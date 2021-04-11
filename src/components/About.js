@@ -1,8 +1,8 @@
 function About() {
 	return (
 		<>
-			<div className="container">
-				<h1>Holdet</h1>
+			<div className="container mt-5">
+				<h1>Skattebasserne</h1>
 				<ul>
 					<li>Torben</li>
 					<li>Rikke</li>

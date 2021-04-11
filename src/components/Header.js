@@ -6,7 +6,12 @@ function Header() {
 			{/* Navigation bar */}
 			<nav className="navbar navbar-expand-lg navbar-dark bg-dark">
 				<div className="container">
-					<li className="navbar-brand">Vi går sammen</li>
+					<li className="navbar-brand">
+						<NavLink className="navbar-brand" to="/">
+							{' '}
+							Vi går sammen
+						</NavLink>
+					</li>
 					<div className="ml-auto">
 						<button
 							className="navbar-toggler"
@@ -42,9 +47,9 @@ function Header() {
 				</div>
 			</nav>
 			{/* Jumbotron */}
-			<div class="jumbotron jumbotron-fluid bg-light text-dark mb-2">
-				<div class="container text-sm-center pt-5">
-					<h1 class="display-4">Nu går vi et skridt ad gangen</h1>
+			<div className="jumbotron jumbotron-fluid bg-light text-dark mb-2">
+				<div className="container text-sm-center pt-5">
+					<h1 className="display-4">Nu går vi et skridt ad gangen</h1>
 				</div>
 			</div>
 		</>
