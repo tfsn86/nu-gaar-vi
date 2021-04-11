@@ -1,12 +1,12 @@
+import { NavLink } from 'react-router-dom';
+
 function Header() {
 	return (
 		<>
 			{/* Navigation bar */}
 			<nav className="navbar navbar-expand-lg navbar-dark bg-dark">
 				<div className="container">
-					<a className="navbar-brand" href="http://ufst.dk">
-						Vi går sammen
-					</a>
+					<li className="navbar-brand">Vi går sammen</li>
 					<div className="ml-auto">
 						<button
 							className="navbar-toggler"
@@ -21,20 +21,32 @@ function Header() {
 						</button>
 						<div className="collapse navbar-collapse" id="navbarNavAltMarkup">
 							<div className="navbar-nav">
-								<a className="nav-link" href="http://ufst.dk">
-									Om
-								</a>
-								<a className="nav-link" href="http://ufst.dk">
-									Log ind
-								</a>
-								<a className="nav-link" href="http://ufst.dk">
-									Tilmeld
-								</a>
+								<li>
+									<NavLink className="nav-link" to="/about">
+										Om
+									</NavLink>
+								</li>
+								<li>
+									<NavLink className="nav-link" to="/signin">
+										Log ind
+									</NavLink>
+								</li>
+								<li>
+									<NavLink className="nav-link" to="signup">
+										Tilmeld
+									</NavLink>
+								</li>
 							</div>
 						</div>
 					</div>
 				</div>
 			</nav>
+			{/* Jumbotron */}
+			<div class="jumbotron jumbotron-fluid bg-light text-dark mb-2">
+				<div class="container text-sm-center pt-5">
+					<h1 class="display-4">Nu går vi et skridt ad gangen</h1>
+				</div>
+			</div>
 		</>
 	);
 }
