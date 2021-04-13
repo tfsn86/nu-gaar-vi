@@ -1,6 +1,8 @@
+import React, { Fragment } from 'react';
+
 const TempStepCounter = () => {
 	return (
-		<>
+		<Fragment>
 			<div className="container text-center">
 				{/* Table */}
 				<form method="get" id="table-form"></form>
@@ -87,7 +89,7 @@ const TempStepCounter = () => {
 					Gem
 				</button>
 			</div>
-		</>
+		</Fragment>
 	);
 };
 
