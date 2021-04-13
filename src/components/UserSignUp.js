@@ -1,6 +1,8 @@
-function UserSignUp() {
+import { Fragment } from 'react';
+
+const UserSignUp = () => {
 	return (
-		<>
+		<Fragment>
 			<div className="container mt-5 text-danger">
 				<h1>
 					På denne side skal nye brugere tilmelde sig.
@@ -9,8 +11,8 @@ function UserSignUp() {
 					Under udarbejdelse
 				</h1>
 			</div>
-		</>
+		</Fragment>
 	);
-}
+};
 
 export default UserSignUp;

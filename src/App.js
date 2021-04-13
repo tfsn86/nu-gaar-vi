@@ -10,15 +10,13 @@ import UserSignUp from './components/UserSignUp';
 function App() {
 	return (
 		<Router>
-			<>
-				<Header />
-				<Switch>
-					<Route exact path="/" component={TempStepCounter} />
-					<Route path="/about" component={About} />
-					<Route path="/signin" component={UserSignIn} />
-					<Route path="/signup" component={UserSignUp} />
-				</Switch>
-			</>
+			<Header />
+			<Switch>
+				<Route exact path="/" component={TempStepCounter} />
+				<Route path="/about" component={About} />
+				<Route path="/signin" component={UserSignIn} />
+				<Route path="/signup" component={UserSignUp} />
+			</Switch>
 		</Router>
 	);
 }

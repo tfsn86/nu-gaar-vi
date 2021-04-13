@@ -1,4 +1,4 @@
-function TempStepCounter() {
+const TempStepCounter = () => {
 	return (
 		<>
 			<div className="container text-center">
@@ -89,6 +89,6 @@ function TempStepCounter() {
 			</div>
 		</>
 	);
-}
+};
 
 export default TempStepCounter;

@@ -1,8 +1,9 @@
+import { Fragment } from 'react';
 import { NavLink } from 'react-router-dom';
 
-function Header() {
+const Header = () => {
 	return (
-		<>
+		<Fragment>
 			{/* Navigation bar */}
 			<nav className="navbar navbar-expand-lg navbar-dark bg-dark">
 				<div className="container">
@@ -52,8 +53,8 @@ function Header() {
 					<h1 className="display-4">Nu går vi et skridt ad gangen</h1>
 				</div>
 			</div>
-		</>
+		</Fragment>
 	);
-}
+};
 
 export default Header;

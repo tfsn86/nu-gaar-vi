@@ -1,6 +1,8 @@
-function About() {
+import { Fragment } from 'react';
+
+const About = () => {
 	return (
-		<>
+		<Fragment>
 			<div className="container mt-5">
 				<h1>Skattebasserne</h1>
 				<ul>
@@ -11,8 +13,8 @@ function About() {
 					<li>Mia</li>
 				</ul>
 			</div>
-		</>
+		</Fragment>
 	);
-}
+};
 
 export default About;
