@@ -3,7 +3,15 @@ import React, { Fragment } from 'react';
 const TempStepCounter = () => {
 	return (
 		<Fragment>
-			<div className="container text-center">
+			{/* Jumbotron */}
+			<div className="jumbotron jumbotron-fluid bg-light text-dark mb-2">
+				<div className="container text-sm-center pt-5">
+					<h1 className="display-4 font-weight-lighter font-italic">
+						Små skridt, store drømme
+					</h1>
+				</div>
+			</div>
+			<div className="container text-center mt-5">
 				{/* Table */}
 				<form method="get" id="table-form"></form>
 				<table className="table table-bordered">

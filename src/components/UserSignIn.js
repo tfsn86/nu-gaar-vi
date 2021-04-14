@@ -10,10 +10,20 @@ const UserSignIn = () => {
 	};
 	return (
 		<Fragment>
+			{/* Jumbotron */}
+			<div className="jumbotron jumbotron-fluid bg-light text-dark mb-2">
+				<div className="container text-sm-center pt-5">
+					<h1 className="display-4 font-weight-lighter font-italic">
+						Vi går hele vejen
+					</h1>
+				</div>
+			</div>
 			<div className="container">
 				<form className="mt-5" onSubmit={handleSubmit}>
 					<div className="form-group">
-						<label for="email">Email:</label>
+						<label htmlFor="email" className="font-weight-bolder">
+							Email
+						</label>
 
 						<input
 							type="email"
@@ -23,12 +33,11 @@ const UserSignIn = () => {
 							value={email}
 							onChange={(e) => setEmail(e.target.value)}
 						/>
-						<small id="emailHelp" class="form-text text-muted">
-							Din email deles ikke med andre
-						</small>
 					</div>
 					<div className="form-group">
-						<label for="password">Password:</label>
+						<label htmlFor="password" className="font-weight-bolder">
+							Kodeord
+						</label>
 						<input
 							type="password"
 							className="form-control"
@@ -37,7 +46,7 @@ const UserSignIn = () => {
 							onChange={(e) => setPassword(e.target.value)}
 						/>
 					</div>
-					<button type="submit" class="btn btn-primary">
+					<button type="submit" className="btn btn-primary">
 						Log ind
 					</button>
 				</form>
@@ -45,33 +54,11 @@ const UserSignIn = () => {
 				<div className="mt-5 text-danger text-center">
 					Test useState
 					<h5>Email: {email}</h5>
-					<h5>Password: {password}</h5>
+					<h5>Kodeord: {password}</h5>
 				</div>
 			</div>
 		</Fragment>
 	);
 };
-
-// const [name, setName] = useState('');
-
-// const handleSubmit = (evt) => {
-// 	evt.preventDefault();
-// 	alert(`Submitting Name ${name}`);
-// };
-// return (
-// 	<form onSubmit={handleSubmit}>
-// 		<label>
-// 			Frirst Name:
-// 			<input
-// 				type="text"
-// 				value={name}
-// 				onChange={(e) => setName(e.target.value)}
-// 			/>
-// 		</label>
-
-// 		<input type="submit" value="Submit" />
-// 		<h1>{name}</h1>
-// 	</form>
-// );
 
 export default UserSignIn;

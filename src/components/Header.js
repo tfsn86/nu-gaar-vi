@@ -10,7 +10,14 @@ const Header = () => {
 					<li className="navbar-brand">
 						<NavLink className="navbar-brand" to="/">
 							{' '}
-							Vi går sammen
+							Walk
+							<span role="img" aria-label="person-walking">
+								🚶‍♂🚶
+							</span>{' '}
+							Walk
+							<span role="img" aria-label="person-walking">
+								🚶‍♂🚶
+							</span>{' '}
 						</NavLink>
 					</li>
 					<div className="ml-auto">
@@ -47,12 +54,6 @@ const Header = () => {
 					</div>
 				</div>
 			</nav>
-			{/* Jumbotron */}
-			<div className="jumbotron jumbotron-fluid bg-light text-dark mb-2">
-				<div className="container text-sm-center pt-5">
-					<h1 className="display-4">Nu går vi et skridt ad gangen</h1>
-				</div>
-			</div>
 		</Fragment>
 	);
 };
