@@ -11,29 +11,42 @@ const UserSignIn = () => {
 	return (
 		<Fragment>
 			<div className="container">
-				<h1 className="mb-5 text-danger">Under udarbejdelse</h1>
-				<form onSubmit={handleSubmit}>
-					<label>
-						Email:
+				<form className="mt-5" onSubmit={handleSubmit}>
+					<div className="form-group">
+						<label for="email">Email:</label>
+
 						<input
-							type="text"
+							type="email"
+							className="form-control"
+							id="email"
+							aria-describedby="emailHelp"
 							value={email}
 							onChange={(e) => setEmail(e.target.value)}
 						/>
-					</label>
-					<label>
-						Password:
+						<small id="emailHelp" class="form-text text-muted">
+							Din email deles ikke med andre
+						</small>
+					</div>
+					<div className="form-group">
+						<label for="password">Password:</label>
 						<input
-							type="text"
+							type="password"
+							className="form-control"
+							id="password"
 							value={password}
 							onChange={(e) => setPassword(e.target.value)}
 						/>
-					</label>
-
-					<input type="submit" value="Submit" />
+					</div>
+					<button type="submit" class="btn btn-primary">
+						Log ind
+					</button>
 				</form>
-				<h1>Email: {email}</h1>
-				<h1>Password: {password}</h1>
+
+				<div className="mt-5 text-danger text-center">
+					Test useState
+					<h5>Email: {email}</h5>
+					<h5>Password: {password}</h5>
+				</div>
 			</div>
 		</Fragment>
 	);
