@@ -46,9 +46,11 @@ const UserSignIn = () => {
 							onChange={(e) => setPassword(e.target.value)}
 						/>
 					</div>
-					<button type="submit" className="btn btn-primary">
-						Log ind
-					</button>
+					<div className="text-center mt-4">
+						<button type="submit" className="btn btn-primary">
+							Log ind
+						</button>
+					</div>
 				</form>
 
 				<div className="mt-5 text-danger text-center">
