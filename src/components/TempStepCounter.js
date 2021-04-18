@@ -1,6 +1,15 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 
 const TempStepCounter = () => {
+	const [steps1, setSteps1] = useState('');
+	const [steps2, setSteps2] = useState('');
+	const [steps3, setSteps3] = useState('');
+
+	const onSubmitForm = (e) => {
+		e.preventDefault();
+		console.log('Submitting....');
+	};
+
 	return (
 		<Fragment>
 			{/* Jumbotron */}
@@ -11,91 +20,43 @@ const TempStepCounter = () => {
 					</h1>
 				</div>
 			</div>
-			<div className="container text-center mt-5">
-				{/* Table */}
-				<form method="get" id="table-form"></form>
-				<table className="table table-bordered">
-					<thead>
-						<tr>
-							<th>Dato</th>
-							<th>Dag</th>
-							<th>Antal Skridt</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>9. april</td>
-							<td>Fredag</td>
-							<td>
-								<input
-									type="text"
-									placeholder="Indtast skridt"
-									name="company"
-									form="table-form"
-									value="6.597"
-									readOnly={true}
-								/>
-							</td>
-						</tr>
-						<tr>
-							<td>10. april</td>
-							<td>Lørdag</td>
-							<td>
-								<input
-									type="text"
-									placeholder="Indtast skridt"
-									name="company"
-									form="table-form"
-									value="2.568"
-									readOnly={true}
-								/>
-							</td>
-						</tr>
-						<tr>
-							<td>11. april</td>
-							<td>Søndag</td>
-							<td>
-								<input
-									type="text"
-									placeholder="Indtast skridt"
-									name="company"
-									form="table-form"
-								/>
-							</td>
-						</tr>
-						<tr>
-							<td>12. april</td>
-							<td>Mandag</td>
-							<td>
-								<input
-									type="text"
-									placeholder="Indtast skridt"
-									name="company"
-									form="table-form"
-								/>
-							</td>
-						</tr>
-						<tr>
-							<td>13. april</td>
-							<td>Tirsdag</td>
-							<td>
-								<input
-									type="text"
-									placeholder="Indtast skridt"
-									name="company"
-									form="table-form"
-								/>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-				<button
-					type="button"
-					form="table-form"
-					className="btn btn-primary btn-lg mt-3 mb-5"
-				>
-					Gem
-				</button>
+
+			<div className="container mt-5">
+				<h1 className="text-center my-5">Indtast skridt</h1>
+				{/* Step count component */}
+				<h5>1. april</h5>
+				<form className="d-flex mb-4" onSubmit={onSubmitForm}>
+					<input
+						type="text"
+						placeholder="Indtast skridt"
+						className="form-control"
+						value={steps1}
+						onChange={(e) => setSteps1(e.target.value)}
+					/>
+					<button className="btn btn-success ml-4">Gem</button>
+				</form>
+				<h5>2. april</h5>
+				<form className="d-flex mb-3" onSubmit={onSubmitForm}>
+					<input
+						type="text"
+						placeholder="Indtast skridt"
+						className="form-control"
+						value={steps2}
+						onChange={(e) => setSteps2(e.target.value)}
+					/>
+					<button className="btn btn-success ml-3">Gem</button>
+				</form>
+				<h5>3. april</h5>
+				<form className="d-flex mb-4" onSubmit={onSubmitForm}>
+					<input
+						type="text"
+						placeholder="Indtast skridt"
+						className="form-control"
+						value={steps3}
+						onChange={(e) => setSteps3(e.target.value)}
+					/>
+					<button className="btn btn-success ml-3">Gem</button>
+				</form>
 			</div>
 		</Fragment>
 	);
