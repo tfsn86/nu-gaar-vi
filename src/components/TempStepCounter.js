@@ -2,12 +2,23 @@ import React, { Fragment, useState } from 'react';
 
 const TempStepCounter = () => {
 	const [steps1, setSteps1] = useState('');
-	const [steps2, setSteps2] = useState('');
-	const [steps3, setSteps3] = useState('');
+	// const [steps2, setSteps2] = useState('');
+	// const [steps3, setSteps3] = useState('');
 
-	const onSubmitForm = (e) => {
-		e.preventDefault();
-		console.log('Submitting....');
+	const onSubmitForm = async (e) => {
+		try {
+			const body = { steps1 };
+			// eslint-disable-next-line
+			const response = await fetch('http://localhost:5000/steps', {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify(body),
+			});
+
+			window.location = '/';
+		} catch (error) {
+			console.error(error.message);
+		}
 	};
 
 	return (
@@ -25,37 +36,14 @@ const TempStepCounter = () => {
 				<h1 className="text-center my-5">Indtast skridt</h1>
 				{/* Step count component */}
 				<h5>1. april</h5>
-				<form className="d-flex mb-4" onSubmit={onSubmitForm}>
+				<form className="d-flex mt-5" onSubmit={onSubmitForm}>
 					<input
 						type="text"
-						placeholder="Indtast skridt"
 						className="form-control"
 						value={steps1}
 						onChange={(e) => setSteps1(e.target.value)}
 					/>
-					<button className="btn btn-success ml-4">Gem</button>
-				</form>
-				<h5>2. april</h5>
-				<form className="d-flex mb-3" onSubmit={onSubmitForm}>
-					<input
-						type="text"
-						placeholder="Indtast skridt"
-						className="form-control"
-						value={steps2}
-						onChange={(e) => setSteps2(e.target.value)}
-					/>
-					<button className="btn btn-success ml-3">Gem</button>
-				</form>
-				<h5>3. april</h5>
-				<form className="d-flex mb-4" onSubmit={onSubmitForm}>
-					<input
-						type="text"
-						placeholder="Indtast skridt"
-						className="form-control"
-						value={steps3}
-						onChange={(e) => setSteps3(e.target.value)}
-					/>
-					<button className="btn btn-success ml-3">Gem</button>
+					<button className="btn btn-success">Tilføj</button>
 				</form>
 			</div>
 		</Fragment>
