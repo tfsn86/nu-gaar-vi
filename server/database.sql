@@ -1,6 +1,6 @@
 CREATE DATABASE stepcount;
 
-CREATE TABLE steps(
+CREATE TABLE stepstable(
   step_id SERIAL PRIMARY KEY,
   steps VARCHAR(255)
 );

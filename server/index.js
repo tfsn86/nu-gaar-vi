@@ -1,5 +1,10 @@
+const bodyParser = require('body-parser');
 const express = require('express');
 const app = express();
+app.use(bodyParser.json());
+
+app.use(bodyParser.urlencoded({ extended: false }));
+
 const cors = require('cors');
 const pool = require('./db');
 
@@ -14,11 +19,21 @@ app.post('/steps', async (req, res) => {
 	try {
 		const { steps } = req.body;
 		const newSteps = await pool.query(
-			'INSERT INTO steps (steps) VALUES($1) RETURNING *',
+			'INSERT INTO stepstable (steps) VALUES($1) RETURNING *',
 			[steps]
 		);
 
 		res.json(newSteps.rows[0]);
+	} catch (error) {
+		console.error(error.message);
+	}
+});
+
+// Get step counts
+app.get('/steps', async (req, res) => {
+	try {
+		const allSteps = await pool.query('SELECT * FROM stepstable');
+		res.json(allSteps.rows);
 	} catch (error) {
 		console.error(error.message);
 	}
