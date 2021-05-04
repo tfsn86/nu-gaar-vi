@@ -9,6 +9,7 @@ const TempStepCounter = () => {
 
 	const onSubmitForm = async (e) => {
 		e.preventDefault();
+
 		try {
 			const body = { steps1 };
 			// eslint-disable-next-line
