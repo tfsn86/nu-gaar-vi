@@ -1,7 +1,7 @@
 import React, { Fragment, useState, useEffect } from 'react';
 
 const TempStepCounter = () => {
-	const [steps1, setSteps1] = useState('');
+	const [steps, setSteps] = useState('');
 	const [getStepsState, setStepsState] = useState([]);
 
 	// const [steps2, setSteps2] = useState('');
@@ -11,7 +11,7 @@ const TempStepCounter = () => {
 		e.preventDefault();
 
 		try {
-			const body = { steps1 };
+			const body = { steps };
 			// eslint-disable-next-line
 			const response = await fetch('http://localhost:5000/steps', {
 				method: 'POST',
@@ -60,8 +60,8 @@ const TempStepCounter = () => {
 					<input
 						type="text"
 						className="form-control"
-						value={steps1}
-						onChange={(e) => setSteps1(e.target.value)}
+						value={steps}
+						onChange={(e) => setSteps(e.target.value)}
 					/>
 					<button className="btn btn-success">Tilføj</button>
 				</form>

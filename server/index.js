@@ -13,6 +13,7 @@ app.use(express.json()); // req.body
 app.post('/steps', async (req, res) => {
 	try {
 		const { steps } = req.body;
+
 		const newSteps = await pool.query(
 			'INSERT INTO stepstable (steps) VALUES($1) RETURNING *',
 			[steps]
