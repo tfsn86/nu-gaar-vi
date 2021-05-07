@@ -7,6 +7,21 @@ const TempStepCounter = () => {
 	// const [steps2, setSteps2] = useState('');
 	// const [steps3, setSteps3] = useState('');
 
+	// Delete todo function
+	const deleteStep = async (id) => {
+		try {
+			// eslint-disable-next-line
+			const deleteTodo = await fetch(`http://localhost:5000/steps/${id}`, {
+				method: 'DELETE',
+			});
+
+			setSteps(getStepsState.filter((step) => step.step_id !== id));
+			window.location = '/';
+		} catch (error) {
+			console.error(error.message);
+		}
+	};
+
 	const onSubmitForm = async (e) => {
 		e.preventDefault();
 
@@ -55,7 +70,6 @@ const TempStepCounter = () => {
 			<div className="container mt-5">
 				<h1 className="text-center my-5">Indtast skridt</h1>
 				{/* Step count component */}
-				<h5>1. april</h5>
 				<form className="d-flex " onSubmit={onSubmitForm}>
 					<input
 						type="text"
@@ -66,20 +80,34 @@ const TempStepCounter = () => {
 					<button className="btn btn-success">Tilføj</button>
 				</form>
 
-				<div className="text-danger mt-5">
-					<h1>Testområde</h1>
-					<div>I nedenstående hentes data fra server og database</div>
-					<table className="mt-3">
-						<thead></thead>
-						<tbody>
-							{getStepsState.map((step) => (
-								<tr key={step.step_id}>
-									<td>Antal skridt: {step.steps}</td>
-								</tr>
-							))}
-						</tbody>
-					</table>
-				</div>
+				<table className="table mt-5 text-center">
+					<thead>
+						<tr>
+							<th>Dato</th>
+							<th>Skridt</th>
+							<th>Rediger</th>
+							<th>Slet</th>
+						</tr>
+					</thead>
+
+					<tbody>
+						{getStepsState.map((step) => (
+							<tr key={step.step_id}>
+								<td>Dato (placeholder)</td>
+								<td>{step.steps}</td>
+								<td>{/* <EditSteps step={step} /> */}</td>
+								<td>
+									<button
+										className="btn btn-danger"
+										onClick={() => deleteStep(step.step_id)}
+									>
+										Slet
+									</button>
+								</td>
+							</tr>
+						))}
+					</tbody>
+				</table>
 			</div>
 		</Fragment>
 	);

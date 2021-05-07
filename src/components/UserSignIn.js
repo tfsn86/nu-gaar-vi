@@ -53,11 +53,11 @@ const UserSignIn = () => {
 					</div>
 				</form>
 
-				<div className="mt-5 text-danger text-center">
+				{/* <div className="mt-5 text-danger text-center">
 					Test useState
 					<h5>Email: {email}</h5>
 					<h5>Kodeord: {password}</h5>
-				</div>
+				</div> */}
 			</div>
 		</Fragment>
 	);

@@ -48,11 +48,11 @@ const UserSignUp = () => {
 					</div>
 				</form>
 
-				<div className="mt-5 text-danger text-center">
+				{/* <div className="mt-5 text-danger text-center">
 					Test useState
 					<h5>Email: {newEmail}</h5>
 					<h5>Kodeord: {newPassword}</h5>
-				</div>
+				</div> */}
 			</div>
 		</Fragment>
 	);
