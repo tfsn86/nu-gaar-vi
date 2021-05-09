@@ -1,5 +1,7 @@
 import React, { Fragment, useState, useEffect } from 'react';
 
+import EditSteps from './EditSteps';
+
 const TempStepCounter = () => {
 	const [steps, setSteps] = useState('');
 	const [getStepsState, setStepsState] = useState([]);
@@ -84,7 +86,7 @@ const TempStepCounter = () => {
 					<thead>
 						<tr>
 							<th>Dato</th>
-							<th>Skridt</th>
+							<th>Antal skridt</th>
 							<th>Rediger</th>
 							<th>Slet</th>
 						</tr>
@@ -95,7 +97,9 @@ const TempStepCounter = () => {
 							<tr key={step.step_id}>
 								<td>Dato (placeholder)</td>
 								<td>{step.steps}</td>
-								<td>{/* <EditSteps step={step} /> */}</td>
+								<td>
+									<EditSteps step={step} />
+								</td>
 								<td>
 									<button
 										className="btn btn-danger"
