@@ -4,7 +4,7 @@ import EditSteps from './EditSteps';
 
 const TempStepCounter = () => {
 	const [steps, setSteps] = useState('');
-	const [getStepsState, setStepsState] = useState([]);
+	const [getStepsState, setGetStepsState] = useState([]);
 
 	// const [steps2, setSteps2] = useState('');
 	// const [steps3, setSteps3] = useState('');
@@ -48,7 +48,7 @@ const TempStepCounter = () => {
 			const jsonData = await response.json();
 
 			console.log(jsonData);
-			setStepsState(jsonData);
+			setGetStepsState(jsonData);
 		} catch (error) {
 			console.error(error.message);
 		}
@@ -95,7 +95,7 @@ const TempStepCounter = () => {
 					<tbody>
 						{getStepsState.map((step) => (
 							<tr key={step.step_id}>
-								<td>Dato (placeholder)</td>
+								<td>{step.date}</td>
 								<td>{step.steps}</td>
 								<td>
 									<EditSteps step={step} />
