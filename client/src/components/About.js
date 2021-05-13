@@ -9,7 +9,7 @@ const About = () => {
 						<h6 className="font-italic font-weight-bolder">Walk walk</h6>
 						<p>
 							Dette er en fyldtekst, hvor vi kan finde noget relevant at skrive
-							om vores "kampagne" eller applicationen.
+							om vores "kampagne" eller applikation.
 						</p>
 					</div>
 
@@ -27,7 +27,7 @@ const About = () => {
 					</div>
 					<div className="col-sm">
 						<h6 className="font-italic font-weight-bolder">Holdet</h6>
-						<p>Skattebasserne står bag udviklingen af applicationen.</p>
+						<p>Skattebasserne står bag udviklingen af applikation.</p>
 						<span>
 							Holdet:
 							<ul>
