@@ -9,14 +9,11 @@ const EditSteps = ({ step }) => {
 		try {
 			const body = { steps };
 			// eslint-disable-next-line
-			const response = await fetch(
-				`http://localhost:5000/steps/${step.step_id}`,
-				{
-					method: 'PUT',
-					headers: { 'Content-Type': 'application/json' },
-					body: JSON.stringify(body),
-				}
-			);
+			const response = await fetch(`/steps/${step.step_id}`, {
+				method: 'PUT',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify(body),
+			});
 
 			window.location = '/';
 		} catch (error) {

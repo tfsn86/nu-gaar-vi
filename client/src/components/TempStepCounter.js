@@ -13,7 +13,7 @@ const TempStepCounter = () => {
 	const deleteStep = async (id) => {
 		try {
 			// eslint-disable-next-line
-			const deleteTodo = await fetch(`http://localhost:5000/steps/${id}`, {
+			const deleteTodo = await fetch(`/steps/${id}`, {
 				method: 'DELETE',
 			});
 
@@ -30,7 +30,7 @@ const TempStepCounter = () => {
 		try {
 			const body = { steps };
 			// eslint-disable-next-line
-			const response = await fetch('http://localhost:5000/steps', {
+			const response = await fetch('/steps', {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify(body),
@@ -44,7 +44,7 @@ const TempStepCounter = () => {
 
 	const getStepsFunc = async () => {
 		try {
-			const response = await fetch('http://localhost:5000/steps');
+			const response = await fetch('/steps');
 			const jsonData = await response.json();
 
 			console.log(jsonData);
