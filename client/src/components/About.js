@@ -31,11 +31,11 @@ const About = () => {
 						<span>
 							Holdet:
 							<ul>
-								<li>Torben (CEO)</li>
-								<li>Rikke (CEO)</li>
-								<li>Sarah (CEO)</li>
-								<li>Charlotte (CEO)</li>
-								<li>Mia (CEO)</li>
+								<li>Torben</li>
+								<li>Rikke</li>
+								<li>Sarah</li>
+								<li>Charlotte</li>
+								<li>Mia</li>
 							</ul>
 						</span>
 					</div>
