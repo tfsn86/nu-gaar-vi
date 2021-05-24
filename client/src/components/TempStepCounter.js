@@ -95,7 +95,7 @@ const TempStepCounter = () => {
 					<tbody>
 						{getStepsState.map((step) => (
 							<tr key={step.step_id}>
-								<td>{step.date}</td>
+								<td>{step.date_count}</td>
 								<td>{step.steps}</td>
 								<td>
 									<EditSteps step={step} />
