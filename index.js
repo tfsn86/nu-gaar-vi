@@ -44,7 +44,9 @@ app.post('/steps', async (req, res) => {
 // Get step counts
 app.get('/steps', async (req, res) => {
 	try {
-		const allSteps = await pool.query('SELECT * FROM stepstable');
+		const allSteps = await pool.query(
+			'SELECT * FROM stepstable ORDER BY date_count DESC'
+		);
 		res.json(allSteps.rows);
 	} catch (error) {
 		console.error(error.message);

@@ -9,11 +9,11 @@ const TempStepCounter = () => {
 	// const [steps2, setSteps2] = useState('');
 	// const [steps3, setSteps3] = useState('');
 
-	// Delete todo function
+	// Delete step function
 	const deleteStep = async (id) => {
 		try {
 			// eslint-disable-next-line
-			const deleteTodo = await fetch(`/steps/${id}`, {
+			const deleteStepCount = await fetch(`/steps/${id}`, {
 				method: 'DELETE',
 			});
 
