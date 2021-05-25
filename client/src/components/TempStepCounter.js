@@ -48,7 +48,25 @@ const TempStepCounter = () => {
 			const jsonData = await response.json();
 
 			console.log(jsonData);
-			setGetStepsState(jsonData);
+
+			const newJsonData = jsonData.map((data) => {
+				const options = {
+					year: 'numeric',
+					month: 'long',
+					day: 'numeric',
+				};
+				const container = {
+					step_id: data.step_id,
+					steps: data.steps,
+					date_count: new Date(data.date_count).toLocaleDateString(
+						'dk-DK',
+						options
+					),
+				};
+				return container;
+			});
+			console.log(newJsonData);
+			setGetStepsState(newJsonData);
 		} catch (error) {
 			console.error(error.message);
 		}
