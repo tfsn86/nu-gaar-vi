@@ -7,3 +7,7 @@ CREATE TABLE stepstable(
 
 ALTER TABLE stepstable 
 ADD COLUMN date_count DATE default CURRENT_DATE;
+
+ALTER TABLE stepstable 
+ALTER COLUMN steps TYPE INT
+USING steps::integer;

@@ -2,7 +2,7 @@ import React, { Fragment, useState, useEffect } from 'react';
 
 import EditSteps from './EditSteps';
 
-const TempStepCounter = () => {
+const Dashboard = () => {
 	const [steps, setSteps] = useState('');
 	const [getStepsState, setGetStepsState] = useState([]);
 
@@ -135,4 +135,4 @@ const TempStepCounter = () => {
 	);
 };
 
-export default TempStepCounter;
+export default Dashboard;
