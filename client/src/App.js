@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import Header from './components/Header';
 import Landing from './components/Landing';
-import TempStepCounter from './components/Dashboard';
+import Dashboard from './components/Dashboard';
 import About from './components/About';
 import UserSignIn from './components/UserSignIn';
 import UserSignUp from './components/UserSignUp';
@@ -14,7 +14,7 @@ function App() {
 			<Header />
 			<Switch>
 				<Route exact path="/" component={Landing} />
-				<Route path="/dashboard" component={TempStepCounter} />
+				<Route path="/dashboard" component={Dashboard} />
 				<Route path="/about" component={About} />
 				<Route path="/signin" component={UserSignIn} />
 				<Route path="/signup" component={UserSignUp} />

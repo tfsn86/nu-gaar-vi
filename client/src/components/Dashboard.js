@@ -6,9 +6,6 @@ const Dashboard = () => {
 	const [steps, setSteps] = useState('');
 	const [getStepsState, setGetStepsState] = useState([]);
 
-	// const [steps2, setSteps2] = useState('');
-	// const [steps3, setSteps3] = useState('');
-
 	// Delete step function
 	const deleteStep = async (id) => {
 		try {
