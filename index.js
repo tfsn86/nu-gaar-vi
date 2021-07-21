@@ -27,9 +27,9 @@ console.log(path.join(__dirname, 'client/build'));
 
 app.use('/dashboard', require('./routes/dashboard'));
 
-// app.get('*', (req, res) => {
-// 	res.sendFile(path.join(__dirname, 'client/build/index.html'));
-// });
+app.get('*', (req, res) => {
+	res.sendFile(path.join(__dirname, 'client/build/index.html'));
+});
 
 app.listen(PORT, () => {
 	console.log(`Server has started on port ${PORT}`);
