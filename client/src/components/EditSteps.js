@@ -9,7 +9,7 @@ const EditSteps = ({ step }) => {
 		try {
 			const body = { steps };
 			// eslint-disable-next-line
-			const response = await fetch(`/steps/${step.step_id}`, {
+			const response = await fetch(`/dashboard/steps/${step.step_id}`, {
 				method: 'PUT',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify(body),

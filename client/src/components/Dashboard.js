@@ -10,7 +10,7 @@ const Dashboard = () => {
 	const deleteStep = async (id) => {
 		try {
 			// eslint-disable-next-line
-			const deleteStepCount = await fetch(`/steps/${id}`, {
+			const deleteStepCount = await fetch(`/dashboard/steps/${id}`, {
 				method: 'DELETE',
 			});
 
@@ -27,7 +27,7 @@ const Dashboard = () => {
 		try {
 			const body = { steps };
 			// eslint-disable-next-line
-			const response = await fetch('/steps', {
+			const response = await fetch('/dashboard/steps', {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify(body),
@@ -41,10 +41,8 @@ const Dashboard = () => {
 
 	const getStepsFunc = async () => {
 		try {
-			const response = await fetch('/steps');
+			const response = await fetch('/dashboard/steps');
 			const jsonData = await response.json();
-
-			console.log(jsonData);
 
 			const newJsonData = jsonData.map((data) => {
 				const options = {
@@ -62,7 +60,7 @@ const Dashboard = () => {
 				};
 				return container;
 			});
-			console.log(newJsonData);
+
 			setGetStepsState(newJsonData);
 		} catch (error) {
 			console.error(error.message);
