@@ -24,7 +24,7 @@ console.log(__dirname);
 console.log(path.join(__dirname, 'client/build'));
 
 // Routes
-
+app.use('/auth', require('./routes/auth'));
 app.use('/dashboard', require('./routes/dashboard'));
 
 app.get('*', (req, res) => {
