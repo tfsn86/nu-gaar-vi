@@ -1,12 +1,42 @@
 import { Fragment, useState } from 'react';
 
 const UserSignIn = () => {
-	const [email, setEmail] = useState('');
-	const [password, setPassword] = useState('');
+	const [inputs, setInputs] = useState({
+		email: '',
+		password: '',
+		name: '',
+	});
 
-	const handleSubmit = (evt) => {
-		evt.preventDefault();
-		alert(`Submitting email ${email} and password ${password}`);
+	const { email, password, name } = inputs;
+
+	const onChange = (e) =>
+		setInputs({ ...inputs, [e.target.name]: e.target.value });
+
+	const onSubmitForm = async (e) => {
+		e.preventDefault();
+		try {
+			const body = { email, password, name };
+			const response = await fetch(
+				'http://localhost:5000/authentication/register',
+				{
+					method: 'POST',
+					headers: {
+						'Content-type': 'application/json',
+					},
+					body: JSON.stringify(body),
+				}
+			);
+			const parseRes = await response.json();
+
+			if (parseRes.jwtToken) {
+				localStorage.setItem('token', parseRes.jwtToken);
+				// setAuth(true);
+			} else {
+				// setAuth(false);
+			}
+		} catch (err) {
+			console.error(err.message);
+		}
 	};
 	return (
 		<Fragment>
@@ -19,19 +49,29 @@ const UserSignIn = () => {
 				</div>
 			</div>
 			<div className="container">
-				<form className="mt-5" onSubmit={handleSubmit}>
+				<form className="mt-5" onSubmit={onSubmitForm}>
+					<div className="form-group">
+						<label htmlFor="name" className="font-weight-bolder">
+							Navn
+						</label>
+						<input
+							type="text"
+							name="name"
+							value={name}
+							onChange={(e) => onChange(e)}
+							className="form-control"
+						/>
+					</div>
 					<div className="form-group">
 						<label htmlFor="email" className="font-weight-bolder">
 							Email
 						</label>
-
 						<input
-							type="email"
-							className="form-control"
-							id="email"
-							aria-describedby="emailHelp"
+							type="text"
+							name="email"
 							value={email}
-							onChange={(e) => setEmail(e.target.value)}
+							onChange={(e) => onChange(e)}
+							className="form-control"
 						/>
 					</div>
 					<div className="form-group">
@@ -40,10 +80,10 @@ const UserSignIn = () => {
 						</label>
 						<input
 							type="password"
-							className="form-control"
-							id="password"
+							name="password"
 							value={password}
-							onChange={(e) => setPassword(e.target.value)}
+							onChange={(e) => onChange(e)}
+							className="form-control"
 						/>
 					</div>
 					<div className="text-center mt-4">
@@ -52,12 +92,6 @@ const UserSignIn = () => {
 						</button>
 					</div>
 				</form>
-
-				{/* <div className="mt-5 text-danger text-center">
-					Test useState
-					<h5>Email: {email}</h5>
-					<h5>Kodeord: {password}</h5>
-				</div> */}
 			</div>
 		</Fragment>
 	);
