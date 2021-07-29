@@ -1,31 +1,18 @@
 const router = require('express').Router();
+const authorize = require('../middleware/authorization');
 const pool = require('../db');
 
-// Create a step count
-router.post('/steps', async (req, res) => {
-	try {
-		const { steps } = req.body;
-
-		const newSteps = await pool.query(
-			'INSERT INTO stepstable (steps) VALUES($1) RETURNING *',
-			[steps]
-		);
-
-		res.json(newSteps.rows[0]);
-	} catch (error) {
-		console.error(error.message);
-	}
-});
-
 // Get all step counts
-router.get('/steps', async (req, res) => {
+router.get('/steps', authorize, async (req, res) => {
 	try {
-		const allSteps = await pool.query(
-			'SELECT * FROM stepstable ORDER BY date_count DESC'
+		const allUserStepCounts = await pool.query(
+			'SELECT u.user_name, s.step_id, s.steps, s.date_count FROM users AS u LEFT JOIN stepstable AS s ON u.user_id = s.user_id WHERE u.user_id = $1',
+			[req.user.id]
 		);
-		res.json(allSteps.rows);
+		res.json(allUserStepCounts.rows);
 	} catch (error) {
 		console.error(error.message);
+		res.status(500).send('Server error');
 	}
 });
 
@@ -44,36 +31,58 @@ router.get('/steps/:id', async (req, res) => {
 	}
 });
 
+// Create a step count
+router.post('/steps', authorize, async (req, res) => {
+	try {
+		const { steps } = req.body;
+
+		const newSteps = await pool.query(
+			'INSERT INTO stepstable (user_id, steps) VALUES($1, $2) RETURNING *',
+			[req.user.id, steps]
+		);
+
+		res.json(newSteps.rows[0]);
+	} catch (error) {
+		console.error(error.message);
+	}
+});
+
 // Update a step count
-router.put('/steps/:id', async (req, res) => {
+router.put('/steps/:id', authorize, async (req, res) => {
 	try {
 		const { id } = req.params;
 		const { steps } = req.body;
 
-		// eslint-disable-next-line
 		const updateStep = await pool.query(
-			'UPDATE stepstable SET steps = $1 WHERE step_id = $2',
-			[steps, id]
+			'UPDATE stepstable SET steps = $1 WHERE step_id = $2 AND user_id = $3 RETURNING *',
+			[steps, id, req.user.id]
 		);
 
-		res.json(`Step count on step_id ${id} was updated!`);
+		// if (updateStep.rows.length === 0) {
+		// 	return res.json('This step count is not yours');
+		// }
+
+		res.json(`Step count was updated!`);
 	} catch (error) {
 		console.error(error.message);
 	}
 });
 
 // Delete a step count
-router.delete('/steps/:id', async (req, res) => {
+router.delete('/steps/:id', authorize, async (req, res) => {
 	try {
 		const { id } = req.params;
 
-		// eslint-disable-next-line
 		const deleteStep = await pool.query(
-			'DELETE FROM stepstable WHERE step_id = $1',
-			[id]
+			'DELETE FROM stepstable WHERE step_id = $1 AND user_id = $2 RETURNING *',
+			[id, req.user.id]
 		);
 
-		res.json(`Step count on step_id ${id} was deleted!`);
+		if (deleteStep.rows.length) {
+			res.json('This step count is not yours!');
+		}
+
+		res.json(`Step count was deleted!`);
 	} catch (error) {
 		console.error(error.message);
 	}
