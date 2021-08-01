@@ -1,7 +1,17 @@
 import { Fragment } from 'react';
 import { NavLink } from 'react-router-dom';
 
-const Header = () => {
+const Header = ({ setAuth }) => {
+	const logout = async (e) => {
+		e.preventDefault();
+		try {
+			localStorage.removeItem('token');
+			setAuth(false);
+		} catch (err) {
+			console.error(err.message);
+		}
+	};
+
 	return (
 		<Fragment>
 			{/* Navigation bar */}
@@ -48,6 +58,14 @@ const Header = () => {
 									<NavLink className="nav-link" to="signup">
 										Tilmeld
 									</NavLink>
+								</li>
+								<li>
+									<button
+										onClick={(e) => logout(e)}
+										className="btn text-white-50"
+									>
+										Log ud
+									</button>
 								</li>
 							</div>
 						</div>
