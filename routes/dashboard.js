@@ -6,7 +6,7 @@ const pool = require('../db');
 router.get('/steps', authorize, async (req, res) => {
 	try {
 		const allUserStepCounts = await pool.query(
-			'SELECT u.user_name, s.step_id, s.steps, s.date_count FROM users AS u LEFT JOIN stepstable AS s ON u.user_id = s.user_id WHERE u.user_id = $1',
+			'SELECT u.user_name, s.step_id, s.steps, s.date_count FROM users AS u LEFT JOIN stepstable AS s ON u.user_id = s.user_id WHERE u.user_id = $1 ORDER BY s.date_count DESC',
 			[req.user.id]
 		);
 		res.json(allUserStepCounts.rows);
