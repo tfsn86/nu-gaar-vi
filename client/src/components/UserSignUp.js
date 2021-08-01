@@ -1,44 +1,86 @@
 import { Fragment, useState } from 'react';
 
-const UserSignUp = () => {
-	const [newEmail, setNewEmail] = useState('');
-	const [newPassword, setNewPassword] = useState('');
+const UserSignUp = ({ setAuth }) => {
+	const [inputs, setInputs] = useState({
+		email: '',
+		password: '',
+		name: '',
+	});
 
-	const handleSubmit = (evt) => {
-		evt.preventDefault();
-		alert(`Submitting email ${newEmail} and password ${newPassword}`);
+	const { email, password, name } = inputs;
+
+	const onChange = (e) =>
+		setInputs({ ...inputs, [e.target.name]: e.target.value });
+
+	const onSubmitForm = async (e) => {
+		e.preventDefault();
+		try {
+			const body = { email, password, name };
+			const response = await fetch('http://localhost:5000/auth/register', {
+				method: 'POST',
+				headers: {
+					'Content-type': 'application/json',
+				},
+				body: JSON.stringify(body),
+			});
+			const parseRes = await response.json();
+
+			if (parseRes.jwtToken) {
+				localStorage.setItem('token', parseRes.jwtToken);
+				setAuth(true);
+			} else {
+				setAuth(false);
+			}
+		} catch (err) {
+			console.error(err.message);
+		}
 	};
 	return (
 		<Fragment>
+			{/* Jumbotron */}
+			<div className="jumbotron jumbotron-fluid bg-light text-dark mb-2">
+				<div className="container text-sm-center pt-5">
+					<h1 className="display-4 font-weight-lighter font-italic">
+						Vi går hele vejen
+					</h1>
+				</div>
+			</div>
 			<div className="container">
-				<form className="mt-5" onSubmit={handleSubmit}>
+				<form className="mt-5" onSubmit={onSubmitForm}>
 					<div className="form-group">
+						<div className="form-group">
+							<label htmlFor="name" className="font-weight-bolder">
+								Navn
+							</label>
+							<input
+								type="text"
+								name="name"
+								value={name}
+								onChange={(e) => onChange(e)}
+								className="form-control"
+							/>
+						</div>
 						<label htmlFor="email" className="font-weight-bolder">
-							Indtast din email
+							Email
 						</label>
-
 						<input
-							type="email"
+							type="text"
+							name="email"
+							value={email}
+							onChange={(e) => onChange(e)}
 							className="form-control"
-							id="email"
-							aria-describedby="emailHelp"
-							value={newEmail}
-							onChange={(e) => setNewEmail(e.target.value)}
 						/>
-						<small id="emailHelp" className="form-text text-muted">
-							Din email deles ikke med andre.
-						</small>
 					</div>
 					<div className="form-group">
 						<label htmlFor="password" className="font-weight-bolder">
-							Vælg et kodeord
+							Kodeord
 						</label>
 						<input
 							type="password"
+							name="password"
+							value={password}
+							onChange={(e) => onChange(e)}
 							className="form-control"
-							id="password"
-							value={newPassword}
-							onChange={(e) => setNewPassword(e.target.value)}
 						/>
 					</div>
 					<div className="text-center mt-4">
@@ -47,12 +89,6 @@ const UserSignUp = () => {
 						</button>
 					</div>
 				</form>
-
-				{/* <div className="mt-5 text-danger text-center">
-					Test useState
-					<h5>Email: {newEmail}</h5>
-					<h5>Kodeord: {newPassword}</h5>
-				</div> */}
 			</div>
 		</Fragment>
 	);
