@@ -1,13 +1,12 @@
 import { Fragment, useState } from 'react';
 
-const UserSignIn = () => {
+const UserSignIn = ({ setAuth }) => {
 	const [inputs, setInputs] = useState({
 		email: '',
 		password: '',
-		name: '',
 	});
 
-	const { email, password, name } = inputs;
+	const { email, password } = inputs;
 
 	const onChange = (e) =>
 		setInputs({ ...inputs, [e.target.name]: e.target.value });
@@ -15,24 +14,21 @@ const UserSignIn = () => {
 	const onSubmitForm = async (e) => {
 		e.preventDefault();
 		try {
-			const body = { email, password, name };
-			const response = await fetch(
-				'http://localhost:5000/authentication/register',
-				{
-					method: 'POST',
-					headers: {
-						'Content-type': 'application/json',
-					},
-					body: JSON.stringify(body),
-				}
-			);
+			const body = { email, password };
+			const response = await fetch('http://localhost:5000/auth/login', {
+				method: 'POST',
+				headers: {
+					'Content-type': 'application/json',
+				},
+				body: JSON.stringify(body),
+			});
 			const parseRes = await response.json();
 
 			if (parseRes.jwtToken) {
 				localStorage.setItem('token', parseRes.jwtToken);
-				// setAuth(true);
+				setAuth(true);
 			} else {
-				// setAuth(false);
+				setAuth(false);
 			}
 		} catch (err) {
 			console.error(err.message);
@@ -50,18 +46,6 @@ const UserSignIn = () => {
 			</div>
 			<div className="container">
 				<form className="mt-5" onSubmit={onSubmitForm}>
-					<div className="form-group">
-						<label htmlFor="name" className="font-weight-bolder">
-							Navn
-						</label>
-						<input
-							type="text"
-							name="name"
-							value={name}
-							onChange={(e) => onChange(e)}
-							className="form-control"
-						/>
-					</div>
 					<div className="form-group">
 						<label htmlFor="email" className="font-weight-bolder">
 							Email
