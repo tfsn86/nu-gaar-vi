@@ -9,7 +9,7 @@ import {
 
 import Header from './components/Header';
 import Landing from './components/Landing';
-import Dashboard from './components/Dashboard';
+import Dashboard from './components/dashboard/Dashboard';
 import About from './components/About';
 import UserSignIn from './components/UserSignIn';
 import UserSignUp from './components/UserSignUp';
@@ -42,7 +42,7 @@ function App() {
 	return (
 		<Fragment>
 			<Router>
-				<Header />
+				<Header setAuth={setAuth} />
 				<Switch>
 					<Route
 						exact
@@ -82,7 +82,7 @@ function App() {
 							isAuthenticated ? (
 								<Dashboard {...props} setAuth={setAuth} />
 							) : (
-								<Redirect to="/login" />
+								<Redirect to="/signin" />
 							)
 						}
 					/>
