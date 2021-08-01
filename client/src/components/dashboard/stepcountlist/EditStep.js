@@ -1,21 +1,26 @@
 import React, { Fragment, useState } from 'react';
 
-const EditSteps = ({ step }) => {
+const EditStep = ({ step, setStepsChange }) => {
 	const [steps, setSteps] = useState(step.steps);
 
 	// Edit steps function
 	const updateSteps = async (e) => {
 		e.preventDefault();
 		try {
+			const myHeaders = new Headers();
+
+			myHeaders.append('Content-Type', 'application/json');
+			myHeaders.append('jwt_token', localStorage.token);
+
 			const body = { steps };
 			// eslint-disable-next-line
 			const response = await fetch(`/dashboard/steps/${step.step_id}`, {
 				method: 'PUT',
-				headers: { 'Content-Type': 'application/json' },
+				headers: myHeaders,
 				body: JSON.stringify(body),
 			});
 
-			window.location = '/';
+			setStepsChange(true);
 		} catch (error) {
 			console.error(error.message);
 		}
@@ -67,7 +72,7 @@ const EditSteps = ({ step }) => {
 						<div className="modal-footer">
 							<button
 								type="button"
-								className="btn btn-warning"
+								className="btn btn-success"
 								data-dismiss="modal"
 								onClick={(e) => updateSteps(e)}
 							>
@@ -75,7 +80,7 @@ const EditSteps = ({ step }) => {
 							</button>
 							<button
 								type="button"
-								className="btn btn-danger"
+								className="btn btn-secondary"
 								data-dismiss="modal"
 								onClick={() => {
 									setSteps(step.steps);
@@ -91,4 +96,4 @@ const EditSteps = ({ step }) => {
 	);
 };
 
-export default EditSteps;
+export default EditStep;
