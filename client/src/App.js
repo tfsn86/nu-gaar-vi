@@ -42,7 +42,7 @@ function App() {
 	return (
 		<Fragment>
 			<Router>
-				<Header setAuth={setAuth} />
+				<Header setAuth={setAuth} isAuthenticated={isAuthenticated} />
 				<Switch>
 					<Route
 						exact

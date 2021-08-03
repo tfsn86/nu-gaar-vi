@@ -1,7 +1,7 @@
 import { Fragment } from 'react';
 import { NavLink } from 'react-router-dom';
 
-const Header = ({ setAuth }) => {
+const Header = ({ setAuth, isAuthenticated }) => {
 	const logout = async (e) => {
 		e.preventDefault();
 		try {
@@ -49,24 +49,32 @@ const Header = ({ setAuth }) => {
 										Om
 									</NavLink>
 								</li>
-								<li>
-									<NavLink className="nav-link" to="/signin">
-										Log ind
-									</NavLink>
-								</li>
-								<li>
-									<NavLink className="nav-link" to="signup">
-										Tilmeld
-									</NavLink>
-								</li>
-								<li>
-									<button
-										onClick={(e) => logout(e)}
-										className="btn text-white-50"
-									>
-										Log ud
-									</button>
-								</li>
+								{!isAuthenticated && (
+									<li>
+										<NavLink className="nav-link" to="/signin">
+											Log ind
+										</NavLink>
+									</li>
+								)}
+
+								{!isAuthenticated && (
+									<li>
+										<NavLink className="nav-link" to="signup">
+											Tilmeld
+										</NavLink>
+									</li>
+								)}
+
+								{isAuthenticated && (
+									<li>
+										<button
+											onClick={(e) => logout(e)}
+											className="btn text-white-50"
+										>
+											Log ud
+										</button>
+									</li>
+								)}
 							</div>
 						</div>
 					</div>
