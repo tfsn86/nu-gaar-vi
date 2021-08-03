@@ -1,30 +1,23 @@
 CREATE DATABASE stepcount;
 
--- CREATE TABLE stepstable(
---   step_id SERIAL PRIMARY KEY,
---   steps INT,
---   date_count DATE default CURRENT_DATE
--- );
-
+-- Users table
 CREATE TABLE users (
-  user_id UUID DEFAULT uuid_generate_v4(),
-  user_name VARCHAR(255) NOT NULL,
-  user_email VARCHAR(255) NOT NULL UNIQUE,
-  user_password VARCHAR(255) NOT NULL,
-  PRIMARY KEY (user_id)
+    user_id uuid DEFAULT uuid_generate_v4() PRIMARY KEY,
+    user_name character varying(255) NOT NULL,
+    user_email character varying(255) NOT NULL UNIQUE,
+    user_password character varying(255) NOT NULL
 );
 
+-- Step count table
 CREATE TABLE stepstable (
-  step_id SERIAL,
-  user_id UUID,
-  steps INT NOT NULL,
-  date_count DATE default CURRENT_DATE,
-  PRIMARY KEY (step_id),
-  FOREIGN KEY (user_id) REFERENCES users(user_id)
+    step_id SERIAL PRIMARY KEY,
+    user_id uuid REFERENCES users(user_id),
+    steps integer NOT NULL,
+    date_count date DEFAULT CURRENT_DATE
 );
 
 -- Dummy users data
 INSERT INTO users (user_name, user_email, user_password) VALUES ('Christina', 'christina@hotmail.com','1234');
 
 -- Dummy stepcount data
-INSERT INTO stepstable (user_id, steps, date_count) VALUES ('c76be45f-30f9-41de-84e0-5ea7f204ee4f', '3247', '2021-06-22');
+INSERT INTO stepstable (user_id, steps, date_count) VALUES ('d94cca94-24b8-4fe0-8ff5-53156c0bf366', '10430', '2021-06-28');
