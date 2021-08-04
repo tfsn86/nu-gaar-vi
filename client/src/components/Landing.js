@@ -10,7 +10,7 @@ const Landing = () => {
 				familie, venner og kollegaer!
 			</p>
 			<Link to="/signin" className="btn btn-primary btn-lg">
-				Login
+				Log ind
 			</Link>
 			<Link to="/signup" className="btn btn-primary ml-3 btn-lg">
 				Opret bruger

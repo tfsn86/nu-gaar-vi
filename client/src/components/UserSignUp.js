@@ -1,5 +1,7 @@
 import { Fragment, useState } from 'react';
 
+import { toast } from 'react-toastify';
+
 const UserSignUp = ({ setAuth }) => {
 	const [inputs, setInputs] = useState({
 		email: '',
@@ -28,8 +30,10 @@ const UserSignUp = ({ setAuth }) => {
 			if (parseRes.jwtToken) {
 				localStorage.setItem('token', parseRes.jwtToken);
 				setAuth(true);
+				toast.success('Din bruger er oprettet, og du er nu logget ind!');
 			} else {
 				setAuth(false);
+				toast.error(parseRes);
 			}
 		} catch (err) {
 			console.error(err.message);

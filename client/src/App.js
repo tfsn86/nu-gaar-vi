@@ -1,5 +1,6 @@
-import './App.css';
 import React, { Fragment, useState, useEffect } from 'react';
+import 'react-toastify/dist/ReactToastify.css';
+
 import {
 	BrowserRouter as Router,
 	Switch,
@@ -7,12 +8,16 @@ import {
 	Redirect,
 } from 'react-router-dom';
 
+import { toast } from 'react-toastify';
+
 import Header from './components/Header';
 import Landing from './components/Landing';
 import Dashboard from './components/dashboard/Dashboard';
 import About from './components/About';
 import UserSignIn from './components/UserSignIn';
 import UserSignUp from './components/UserSignUp';
+
+toast.configure();
 
 function App() {
 	const checkAuthenticated = async () => {

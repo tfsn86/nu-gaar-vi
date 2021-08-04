@@ -1,5 +1,6 @@
 import { Fragment } from 'react';
 import { NavLink } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const Header = ({ setAuth, isAuthenticated }) => {
 	const logout = async (e) => {
@@ -7,6 +8,7 @@ const Header = ({ setAuth, isAuthenticated }) => {
 		try {
 			localStorage.removeItem('token');
 			setAuth(false);
+			toast.success('Du er nu logget ud!');
 		} catch (err) {
 			console.error(err.message);
 		}
