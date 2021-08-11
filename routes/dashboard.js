@@ -34,11 +34,11 @@ router.get('/steps/:id', async (req, res) => {
 // Create a step count
 router.post('/steps', authorize, async (req, res) => {
 	try {
-		const { steps } = req.body;
+		const { steps, startDate } = req.body;
 
 		const newSteps = await pool.query(
-			'INSERT INTO stepstable (user_id, steps) VALUES($1, $2) RETURNING *',
-			[req.user.id, steps]
+			'INSERT INTO stepstable (user_id, steps, date_count) VALUES($1, $2, $3) RETURNING *',
+			[req.user.id, steps, startDate]
 		);
 
 		res.json(newSteps.rows[0]);

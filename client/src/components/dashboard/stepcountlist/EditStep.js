@@ -72,14 +72,6 @@ const EditStep = ({ step, setStepsChange }) => {
 						<div className="modal-footer">
 							<button
 								type="button"
-								className="btn btn-success"
-								data-dismiss="modal"
-								onClick={(e) => updateSteps(e)}
-							>
-								OK
-							</button>
-							<button
-								type="button"
 								className="btn btn-secondary"
 								data-dismiss="modal"
 								onClick={() => {
@@ -87,6 +79,14 @@ const EditStep = ({ step, setStepsChange }) => {
 								}}
 							>
 								Luk
+							</button>
+							<button
+								type="button"
+								className="btn btn-success"
+								data-dismiss="modal"
+								onClick={(e) => updateSteps(e)}
+							>
+								OK
 							</button>
 						</div>
 					</div>
