@@ -1,7 +1,9 @@
 import React, { Fragment, useState } from 'react';
-import DatePicker from 'react-datepicker';
-
+import DatePicker, { registerLocale } from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+import da from 'date-fns/locale/da';
+
+registerLocale('da', da);
 
 const InputStep = ({ setStepsChange }) => {
 	const [steps, setSteps] = useState('');
@@ -35,25 +37,45 @@ const InputStep = ({ setStepsChange }) => {
 	return (
 		<Fragment>
 			<div className="container mt-5">
-				<h1 className="text-center my-5">Indtast dato og antal skridt</h1>
+				<h1 className="text-center my-5">
+					Tilføj dato og indtast antal skridt
+				</h1>
 
 				{/* Step count component */}
-				<DatePicker
-					selected={startDate}
-					onChange={(date) => setStartDate(date)}
-					className="form-control text-center mb-3"
-				/>
 
-				<form className="d-flex " onSubmit={onSubmitForm}>
-					<input
-						type="text"
-						className="form-control"
-						value={steps}
-						onChange={(e) => setSteps(e.target.value)}
-						placeholder="Indtast antal skridt"
-					/>
-
-					<button className="btn btn-success form-control">Tilføj</button>
+				<form onSubmit={onSubmitForm}>
+					<div className="row mb-3">
+						<label htmlFor="inputDato" className="col-sm-2 col-form-label">
+							Vælg dato
+						</label>
+						<div className="col-sm-10">
+							<DatePicker
+								locale="da"
+								dateFormat="d. MMMM yyyy"
+								selected={startDate}
+								onChange={(date) => setStartDate(date)}
+								className="form-control mb-3 text-center"
+								id="inputDato"
+							/>
+						</div>
+					</div>
+					<div className="row mb-3">
+						<label htmlFor="inputSteps" className="col-sm-2 col-form-label">
+							Indtast antal skridt
+						</label>
+						<div className="col-sm-10">
+							<input
+								type="text"
+								className="form-control mb-1"
+								value={steps}
+								onChange={(e) => setSteps(e.target.value)}
+								id="inputSteps"
+							/>
+						</div>
+					</div>
+					<div className="text-center">
+						<button className="btn btn-success">Tilføj</button>
+					</div>
 				</form>
 			</div>
 		</Fragment>
