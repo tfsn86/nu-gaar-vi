@@ -1,4 +1,5 @@
 import React, { Fragment, useState } from 'react';
+import { toast } from 'react-toastify';
 import DatePicker, { registerLocale } from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import da from 'date-fns/locale/da';
@@ -26,6 +27,15 @@ const InputStep = ({ setStepsChange }) => {
 				headers: myHeaders,
 				body: JSON.stringify(body),
 			});
+
+			const parseRes = await response.json();
+			console.log(parseRes);
+
+			if (parseRes === 'Manglende skridtindtastning. Prøv igen') {
+				toast.error(parseRes);
+			} else if (parseRes === 'Ugyldigt format. Forsøg igen med talformat') {
+				toast.error(parseRes);
+			}
 
 			setStepsChange(true);
 			setSteps('');

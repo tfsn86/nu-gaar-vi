@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const authorize = require('../middleware/authorization');
+const validDataInput = require('../middleware/validDataInput');
 const pool = require('../db');
 
 // Get all step counts
@@ -32,7 +33,7 @@ router.get('/steps/:id', async (req, res) => {
 });
 
 // Create a step count
-router.post('/steps', authorize, async (req, res) => {
+router.post('/steps', authorize, validDataInput, async (req, res) => {
 	try {
 		const { steps, startDate } = req.body;
 
