@@ -17,6 +17,7 @@ const pool = new Pool({
 	connectionString:
 		process.env.NODE_ENV === 'production' ? proConfig : devConfig,
 	ssl: {
+		sslmode: 'require',
 		rejectUnauthorized: false,
 	},
 });
