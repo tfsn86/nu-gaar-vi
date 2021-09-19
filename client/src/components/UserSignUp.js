@@ -6,13 +6,26 @@ const UserSignUp = ({ setAuth }) => {
 	const [inputs, setInputs] = useState({
 		email: '',
 		password: '',
+		confirmPassword: '',
 		name: '',
 	});
 
-	const { email, password, name } = inputs;
+	const { email, password, confirmPassword, name } = inputs;
 
-	const onChange = (e) =>
+	const onChange = (e) => {
 		setInputs({ ...inputs, [e.target.name]: e.target.value });
+
+		// Check if passwords are equal
+		const password = document.querySelector('input[name=password]');
+		const confirmPassword = document.querySelector(
+			'input[name=confirmPassword]'
+		);
+		if (confirmPassword.value === password.value) {
+			confirmPassword.setCustomValidity('');
+		} else {
+			confirmPassword.setCustomValidity('Kodeord er ikke ens!');
+		}
+	};
 
 	const onSubmitForm = async (e) => {
 		e.preventDefault();
@@ -83,6 +96,18 @@ const UserSignUp = ({ setAuth }) => {
 							type="password"
 							name="password"
 							value={password}
+							onChange={(e) => onChange(e)}
+							className="form-control"
+						/>
+					</div>
+					<div className="form-group">
+						<label htmlFor="password" className="font-weight-bolder">
+							Bekræft kodeord
+						</label>
+						<input
+							type="password"
+							name="confirmPassword"
+							value={confirmPassword}
 							onChange={(e) => onChange(e)}
 							className="form-control"
 						/>
