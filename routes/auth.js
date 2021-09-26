@@ -47,7 +47,7 @@ router.post('/login', validInfo, async (req, res) => {
 		]);
 
 		if (user.rows.length === 0) {
-			return res.status(401).json('Bruger findes ikke!');
+			return res.status(401).json('Email eller kodeord er ugyldig!');
 		}
 
 		const validPassword = await bcrypt.compare(
@@ -56,7 +56,7 @@ router.post('/login', validInfo, async (req, res) => {
 		);
 
 		if (!validPassword) {
-			return res.status(401).json('Kodeord er ugyldigt!');
+			return res.status(401).json('Email eller kodeord er ugyldig!');
 		}
 
 		const jwtToken = jwtGenerator(user.rows[0].user_id);
