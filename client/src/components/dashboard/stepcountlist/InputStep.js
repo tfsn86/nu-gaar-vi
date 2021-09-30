@@ -35,6 +35,10 @@ const InputStep = ({ setStepsChange }) => {
 				toast.error(parseRes);
 			} else if (parseRes === 'Ugyldigt format. Forsøg igen med talformat') {
 				toast.error(parseRes);
+			} else if (
+				parseRes === 'Der er allerede indtastet skridt for denne dato!'
+			) {
+				toast.error(parseRes);
 			}
 
 			setStepsChange(true);

@@ -36,6 +36,16 @@ router.get('/steps/:id', async (req, res) => {
 router.post('/steps', authorize, validDataInput, async (req, res) => {
 	try {
 		const { steps, startDate } = req.body;
+		const date = await pool.query(
+			'SELECT * FROM stepstable WHERE date_count = $1',
+			[startDate]
+		);
+
+		if (date.rows.length > 0) {
+			return res
+				.status(401)
+				.json('Der er allerede indtastet skridt for denne dato!');
+		}
 
 		const newSteps = await pool.query(
 			'INSERT INTO stepstable (user_id, steps, date_count) VALUES($1, $2, $3) RETURNING *',
