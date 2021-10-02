@@ -5,12 +5,12 @@ const pool = require('./db');
 const path = require('path');
 const PORT = process.env.PORT || 5000;
 
-// enable ssl redirect
-app.use(sslRedirect());
-
 // Middleware
 app.use(cors());
 app.use(express.json()); // req.body
+
+// enable ssl redirect
+app.use(sslRedirect());
 
 if (process.env.NODE_ENV === 'production') {
 	//server static content
