@@ -1,4 +1,5 @@
-import express from 'express';
+import sslRedirect from 'heroku-ssl-redirect';
+const express = require('express');
 const app = express();
 const cors = require('cors');
 const pool = require('./db');
