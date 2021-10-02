@@ -1,6 +1,11 @@
 import sslRedirect from 'heroku-ssl-redirect';
-const express = require('express');
+import express from 'express';
+
 const app = express();
+
+// enable ssl redirect
+app.use(sslRedirect());
+
 const cors = require('cors');
 const pool = require('./db');
 const path = require('path');
@@ -9,9 +14,6 @@ const PORT = process.env.PORT || 5000;
 // Middleware
 app.use(cors());
 app.use(express.json()); // req.body
-
-// enable ssl redirect
-app.use(sslRedirect());
 
 if (process.env.NODE_ENV === 'production') {
 	//server static content
