@@ -13,9 +13,8 @@ if (process.env.NODE_ENV === 'production') {
 	//server static content
 	// npm run build
 	app.use(express.static(path.join(__dirname, 'client/build')));
-}
 
-if (process.env.NODE_ENV === 'production') {
+	// SSL redirect
 	app.use((req, res, next) => {
 		if (req.header('x-forwarded-proto') !== 'https')
 			res.redirect(`https://${req.header('host')}${req.url}`);
