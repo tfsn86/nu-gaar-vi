@@ -22,13 +22,17 @@ const Header = ({ setAuth, isAuthenticated }) => {
 					<li className="navbar-brand">
 						<NavLink className="navbar-brand" to="/">
 							{' '}
-							Walk
+							Nu
 							<span role="img" aria-label="person-walking">
-								🚶‍♂🚶
+								🚶‍♂
 							</span>{' '}
-							Walk
+							Går
 							<span role="img" aria-label="person-walking">
-								🚶‍♂🚶
+								🚶
+							</span>{' '}
+							Vi
+							<span role="img" aria-label="person-walking">
+								🚶‍♂
 							</span>{' '}
 						</NavLink>
 					</li>

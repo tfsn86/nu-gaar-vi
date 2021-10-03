@@ -5,6 +5,7 @@ const pool = require('./db');
 const path = require('path');
 const PORT = process.env.PORT || 5000;
 
+// SSL redirect from http to https
 app.use((req, res, next) => {
 	if (process.env.NODE_ENV === 'production') {
 		if (req.headers.host === 'nu-gaar-vi.herokuapp.com')
@@ -19,16 +20,11 @@ app.use((req, res, next) => {
 app.use(cors());
 app.use(express.json()); // req.body
 
-// app.use(express.static(path.join(__dirname, 'client/build')));
-
 if (process.env.NODE_ENV === 'production') {
 	//server static content
 	// npm run build
 	app.use(express.static(path.join(__dirname, 'client/build')));
 }
-
-console.log(__dirname);
-console.log(path.join(__dirname, 'client/build'));
 
 // Routes
 app.use('/auth', require('./routes/auth'));
