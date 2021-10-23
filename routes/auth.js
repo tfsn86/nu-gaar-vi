@@ -9,9 +9,9 @@ const authorize = require('../middleware/authorization');
 const sendEmail = require('../utils/sendMail');
 
 // forgot password route
-router.patch('/forgot-password', async (req, res) => {
+router.patch('/forgot-password', validInfo, async (req, res) => {
 	const { email } = req.body;
-
+	console.log(email);
 	try {
 		const user = await pool.query('SELECT * FROM users WHERE user_email = $1', [
 			email,
@@ -36,7 +36,9 @@ router.patch('/forgot-password', async (req, res) => {
 			// Function sending email to user requesting a new password
 			sendEmail(userEmail, resetLink);
 
-			res.status(200).json('Se din mail for nulstilling af dit kodeord');
+			return res
+				.status(200)
+				.json('Mail med mulighed for nulstilling af kodeord er afsendt');
 		}
 	} catch (err) {
 		console.error(err);
@@ -44,6 +46,7 @@ router.patch('/forgot-password', async (req, res) => {
 	}
 });
 
+// reset password route
 router.patch('/reset-password/:token', async (req, res) => {
 	const resetLink = req.params.token;
 	const { newPassword } = req.body;
@@ -74,7 +77,9 @@ router.patch('/reset-password/:token', async (req, res) => {
 			[bcryptPassword, user.rows[0].user_email]
 		);
 
-		res.status(200).json({ message: 'Kodeord er opdateret' });
+		const jwtToken = jwtGenerator(user.rows[0].user_id);
+
+		return res.json({ jwtToken });
 	} catch (err) {
 		res.status(500).send('Server Error');
 	}

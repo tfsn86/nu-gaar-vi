@@ -16,6 +16,8 @@ import Dashboard from './components/dashboard/Dashboard';
 import About from './components/About';
 import UserSignIn from './components/UserSignIn';
 import UserSignUp from './components/UserSignUp';
+import ForgotPassword from './components/ForgotPassword';
+import ResetPassword from './components/ResetPassword';
 
 toast.configure();
 
@@ -75,6 +77,26 @@ function App() {
 						render={(props) =>
 							!isAuthenticated ? (
 								<UserSignUp {...props} setAuth={setAuth} />
+							) : (
+								<Redirect to="/dashboard" />
+							)
+						}
+					/>
+					<Route
+						path="/forgot-password"
+						render={(props) =>
+							!isAuthenticated ? (
+								<ForgotPassword {...props} setAuth={setAuth} />
+							) : (
+								<Redirect to="/dashboard" />
+							)
+						}
+					/>
+					<Route
+						path="/reset-password"
+						render={(props) =>
+							!isAuthenticated ? (
+								<ResetPassword {...props} setAuth={setAuth} />
 							) : (
 								<Redirect to="/dashboard" />
 							)

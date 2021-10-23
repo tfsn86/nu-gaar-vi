@@ -1,37 +1,49 @@
 import { Fragment, useState } from 'react';
-import { Link } from 'react-router-dom';
 
 import { toast } from 'react-toastify';
 
-const UserSignIn = ({ setAuth }) => {
+const ResetPassword = ({ setAuth }) => {
 	const [inputs, setInputs] = useState({
-		email: '',
-		password: '',
+		newPassword: '',
+		confirmPassword: '',
 	});
 
-	const { email, password } = inputs;
+	const { newPassword, confirmPassword } = inputs;
 
-	const onChange = (e) =>
+	const onChange = (e) => {
 		setInputs({ ...inputs, [e.target.name]: e.target.value });
 
+		// Check if passwords are equal
+		const newPassword = document.querySelector('input[name=newPassword]');
+		const confirmPassword = document.querySelector(
+			'input[name=confirmPassword]'
+		);
+		if (confirmPassword.value === newPassword.value) {
+			confirmPassword.setCustomValidity('');
+		} else {
+			confirmPassword.setCustomValidity('Kodeord er ikke ens!');
+		}
+	};
 	const onSubmitForm = async (e) => {
 		e.preventDefault();
 		try {
-			const body = { email, password };
+			const body = { newPassword };
 
-			const response = await fetch('/auth/login', {
-				method: 'POST',
+			// eslint-disable-next-line no-unused-vars
+			const response = await fetch(`/auth${window.location.pathname}`, {
+				method: 'PATCH',
 				headers: {
 					'Content-type': 'application/json',
 				},
 				body: JSON.stringify(body),
 			});
+
 			const parseRes = await response.json();
 
 			if (parseRes.jwtToken) {
 				localStorage.setItem('token', parseRes.jwtToken);
 				setAuth(true);
-				toast.success('Du er nu logget ind!');
+				toast.success('Kodeord er ændret, og du er logget ind');
 			} else {
 				setAuth(false);
 				toast.error(parseRes);
@@ -40,49 +52,39 @@ const UserSignIn = ({ setAuth }) => {
 			console.error(err.message);
 		}
 	};
+
 	return (
 		<Fragment>
-			{/* Jumbotron */}
-			<div className="jumbotron jumbotron-fluid bg-light text-dark mb-2">
-				<div className="container text-sm-center pt-5">
-					<h1 className="display-4 font-weight-lighter font-italic">
-						Vi går hele vejen
-					</h1>
-				</div>
-			</div>
 			<div className="container">
 				<form className="mt-5" onSubmit={onSubmitForm}>
-					<div className="form-group">
-						<label htmlFor="email" className="font-weight-bolder">
-							Email
-						</label>
-						<input
-							type="text"
-							name="email"
-							value={email}
-							onChange={(e) => onChange(e)}
-							className="form-control"
-						/>
-					</div>
 					<div className="form-group">
 						<label htmlFor="password" className="font-weight-bolder">
 							Kodeord
 						</label>
 						<input
 							type="password"
-							name="password"
-							value={password}
+							name="newPassword"
+							value={newPassword}
+							onChange={(e) => onChange(e)}
+							className="form-control"
+						/>
+					</div>
+					<div className="form-group">
+						<label htmlFor="password" className="font-weight-bolder">
+							Bekræft kodeord
+						</label>
+						<input
+							type="password"
+							name="confirmPassword"
+							value={confirmPassword}
 							onChange={(e) => onChange(e)}
 							className="form-control"
 						/>
 					</div>
 					<div className="text-center mt-4">
 						<button type="submit" className="btn btn-primary">
-							Log ind
+							Bekræft
 						</button>
-					</div>
-					<div className="text-center mt-5">
-						<Link to="/forgot-password">Glemt adgangskode?</Link>
 					</div>
 				</form>
 			</div>
@@ -90,4 +92,4 @@ const UserSignIn = ({ setAuth }) => {
 	);
 };
 
-export default UserSignIn;
+export default ResetPassword;
