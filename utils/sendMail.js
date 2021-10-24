@@ -4,6 +4,7 @@ require('dotenv').config();
 const sendGridKey = process.env.SENDGRID_API_KEY;
 
 function sendEmail(userEmail, token, clientHostname) {
+	console.log(clientHostname);
 	sgMail.setApiKey(sendGridKey);
 	const msg = {
 		to: userEmail,
