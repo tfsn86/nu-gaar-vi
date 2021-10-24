@@ -12,7 +12,10 @@ const sendEmail = require('../utils/sendMail');
 router.patch('/forgot-password', validInfo, async (req, res) => {
 	const { email } = req.body;
 
-	const clientHostname = req.protocol + '://' + req.headers['x-forwarded-host'];
+	const proxyHost = req.headers['x-forwarded-host'];
+	const host = proxyHost
+		? `${req.protocol}://${proxyHost}`
+		: `${req.protocol}://req.headers.host`;
 
 	try {
 		const user = await pool.query('SELECT * FROM users WHERE user_email = $1', [
@@ -36,7 +39,7 @@ router.patch('/forgot-password', validInfo, async (req, res) => {
 			const userEmail = user.rows[0].user_email;
 
 			// Function sending email to user requesting a new password
-			sendEmail(userEmail, resetLink, clientHostname);
+			sendEmail(userEmail, resetLink, host);
 
 			return res
 				.status(200)
