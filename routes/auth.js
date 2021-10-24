@@ -15,7 +15,7 @@ router.patch('/forgot-password', validInfo, async (req, res) => {
 	const proxyHost = req.headers['x-forwarded-host'];
 	const host = proxyHost
 		? `${req.protocol}://${proxyHost}`
-		: `${req.protocol}://req.headers.host`;
+		: `${req.protocol}://${req.headers.host}`;
 
 	try {
 		const user = await pool.query('SELECT * FROM users WHERE user_email = $1', [
