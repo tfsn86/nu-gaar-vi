@@ -1,70 +1,123 @@
-# Getting Started with Create React App
+<!-- TABLE OF CONTENTS -->
+<details>
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">About The Project</a>
+      <ul>
+        <li><a href="#built-with">Built With</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+      <ul>
+        <li><a href="#prerequisites">Prerequisites</a></li>
+        <li><a href="#installation">Installation</a></li>
+      </ul>
+    </li>
+    <li><a href="#roadmap">Roadmap</a></li>
+  </ol>
+</details>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
 
-In the project directory, you can run:
+<!-- ABOUT THE PROJECT -->
+## About The Project
 
-### `npm start`
+The web application makes it possible for users to input and monitor the amount of steps they have taken on a daily basis. The user will at a later stage also be able to see step count statistics and compete against friends and family. The purpose with this is to keep the user motivated staying active.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+I have coded this web application to practice my skills making full stack web applications.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+<p align="right">(<a href="#top">back to top</a>)</p>
 
-### `npm test`
+### Built With
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+* [React.js](https://reactjs.org/)
+* [Express.js](https://expressjs.com/)
+* [Bootstrap](https://getbootstrap.com)
+* [PostgreSQL](https://www.postgresql.org/)
+* [JSON Web Tokens](https://jwt.io/)
+* [SendGrid](https://sendgrid.com/)
 
-### `npm run build`
+<p align="right">(<a href="#top">back to top</a>)</p>
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+<!-- GETTING STARTED -->
+## Getting Started
 
-### `npm run eject`
+To get a local copy up and running follow these simple example steps.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Prerequisites
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+This is an example of how to list things you need to use the software and how to install them.
+* npm
+  ```sh
+  npm install npm@latest -g
+  ```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+* PostgreSQL
+Install PostgreSQL on your local machine from https://www.postgresql.org/
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### Installation
 
-## Learn More
+1. Clone the repo
+   ```sh
+   git clone https://github.com/tfsn86/nu-gaar-vi
+   ```
+2. Install server NPM packages from the root directory
+   ```sh
+   npm install
+   ```
+3. Install client NPM packages
+   ```sh
+   cd client && npm install
+   ```
+4. Create database and tables
+   * Create database
+   ```sql
+   CREATE DATABASE stepcount;
+   ```
+   Create step count table
+   ```sql
+   CREATE TABLE stepstable (
+    step_id SERIAL PRIMARY KEY,
+    user_id uuid REFERENCES users(user_id),
+    steps integer NOT NULL,
+    date_count date);
+   ```
+   Create users table
+   ```sql
+   CREATE TABLE users (
+    user_id uuid DEFAULT uuid_generate_v4() PRIMARY KEY,
+    user_name character varying(255) NOT NULL,
+    user_email character varying(255) NOT NULL UNIQUE,
+    user_password character varying(255) NOT NULL,
+    pw_resetlink character varying(255));
+   ```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+5. Enter your local config variables in `.env`
+PostgreSQL
+   * PG_USER
+   * PG_PASSWORD
+   * PG_HOST
+   * PG_PORT
+   * PG_DATABASE
+   
+JSON Web token secret
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+SendGrid API Key
 
-### Code Splitting
+<p align="right">(<a href="#top">back to top</a>)</p>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+<!-- ROADMAP -->
+## Roadmap
 
-### Analyzing the Bundle Size
+Coming features will soon be added here.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- [] Feature 1
+- [] Feature 2
+- [] Feature 3
+    - [] Nested Feature
 
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+<p align="right">(<a href="#top">back to top</a>)</p>
