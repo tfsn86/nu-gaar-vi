@@ -28,6 +28,8 @@ The web application makes it possible for users to input and monitor the amount 
 
 I have coded this web application to practice my skills making full stack web applications.
 
+The app can be accessed at: https://nugårvi.dk
+
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 ### Built With
