@@ -45,14 +45,6 @@ const Dashboard = ({ setAuth }) => {
 
 	return (
 		<div>
-			{/* Jumbotron */}
-			<div className="jumbotron jumbotron-fluid bg-light text-dark mb-2">
-				<div className="container text-sm-center pt-5">
-					<h1 className="display-4 font-weight-lighter font-italic">
-						Små skridt, store drømme
-					</h1>
-				</div>
-			</div>
 			<div className="container">
 				<InputStep setStepsChange={setStepsChange} />
 				<ListSteps allSteps={allSteps} setStepsChange={setStepsChange} />

@@ -21,19 +21,7 @@ const Header = ({ setAuth, isAuthenticated }) => {
 				<div className="container">
 					<li className="navbar-brand">
 						<NavLink className="navbar-brand" to="/">
-							{' '}
-							Nu
-							<span role="img" aria-label="person-walking">
-								🚶‍♂
-							</span>{' '}
-							Går
-							<span role="img" aria-label="person-walking">
-								🚶
-							</span>{' '}
-							Vi
-							<span role="img" aria-label="person-walking">
-								🚶‍♂
-							</span>{' '}
+							Nu Går Vi
 						</NavLink>
 					</li>
 					<div className="ml-auto">

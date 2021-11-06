@@ -42,14 +42,6 @@ const UserSignIn = ({ setAuth }) => {
 	};
 	return (
 		<Fragment>
-			{/* Jumbotron */}
-			<div className="jumbotron jumbotron-fluid bg-light text-dark mb-2">
-				<div className="container text-sm-center pt-5">
-					<h1 className="display-4 font-weight-lighter font-italic">
-						Vi går hele vejen
-					</h1>
-				</div>
-			</div>
 			<div className="container">
 				<form className="mt-5" onSubmit={onSubmitForm}>
 					<div className="form-group">
