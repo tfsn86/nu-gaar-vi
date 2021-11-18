@@ -7,7 +7,7 @@ function sendEmail(userEmail, token, host) {
 	sgMail.setApiKey(sendGridKey);
 	const msg = {
 		to: userEmail,
-		from: 'tfsn86@gmail.com',
+		from: 'no-reply@nugårvi.dk',
 		subject: 'Nulstilling af kodeord',
 		html: `
 		<div>

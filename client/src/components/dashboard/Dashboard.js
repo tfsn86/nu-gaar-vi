@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 import InputStep from './stepcountlist/InputStep';
 import ListSteps from './stepcountlist/ListSteps';
+import UserStatistics from './stepcountlist/UserStatistics';
 
 const Dashboard = ({ setAuth }) => {
 	const [allSteps, setAllsteps] = useState([]);
@@ -46,6 +47,7 @@ const Dashboard = ({ setAuth }) => {
 	return (
 		<div>
 			<div className="container">
+				<UserStatistics allSteps={allSteps} />
 				<InputStep setStepsChange={setStepsChange} />
 				<ListSteps allSteps={allSteps} setStepsChange={setStepsChange} />
 			</div>

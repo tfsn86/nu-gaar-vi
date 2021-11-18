@@ -29,7 +29,6 @@ const InputStep = ({ setStepsChange }) => {
 			});
 
 			const parseRes = await response.json();
-			console.log(parseRes);
 
 			if (parseRes === 'Manglende skridtindtastning. Prøv igen') {
 				toast.error(parseRes);
@@ -51,9 +50,9 @@ const InputStep = ({ setStepsChange }) => {
 	return (
 		<Fragment>
 			<div className="container mt-5">
-				<h1 className="text-center my-5">
+				<h2 className="text-center my-5">
 					Tilføj dato og indtast antal skridt
-				</h1>
+				</h2>
 
 				{/* Step count component */}
 
