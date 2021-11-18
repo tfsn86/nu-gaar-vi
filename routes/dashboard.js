@@ -37,8 +37,8 @@ router.post('/steps', authorize, validDataInput, async (req, res) => {
 	try {
 		const { steps, startDate } = req.body;
 		const date = await pool.query(
-			'SELECT * FROM stepstable WHERE date_count = $1',
-			[startDate]
+			'SELECT * FROM stepstable WHERE date_count = $1 AND user_id = $2',
+			[startDate, req.user.id]
 		);
 
 		if (date.rows.length > 0) {

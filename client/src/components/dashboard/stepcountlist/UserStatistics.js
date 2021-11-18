@@ -35,9 +35,6 @@ const UserStatistics = ({ allSteps }) => {
 		currentDate.setDate(currentDate.getDate() + 23)
 	);
 
-	console.log(last30DaysDateTime);
-	console.log(last7DaysDateTime);
-
 	const last7DaysList = allSteps
 		.filter((x) => {
 			const elementDateTime = new Date(x.date_count).getTime();
