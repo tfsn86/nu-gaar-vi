@@ -47,8 +47,15 @@ const Dashboard = ({ setAuth }) => {
 	return (
 		<div>
 			<div className="container">
-				<UserStatistics allSteps={allSteps} />
-				<InputStep setStepsChange={setStepsChange} />
+				<div className="row">
+					<div className="col-sm">
+						<InputStep setStepsChange={setStepsChange} />
+					</div>
+					<div className="col-sm">
+						<UserStatistics allSteps={allSteps} />
+					</div>
+				</div>
+
 				<ListSteps allSteps={allSteps} setStepsChange={setStepsChange} />
 			</div>
 		</div>

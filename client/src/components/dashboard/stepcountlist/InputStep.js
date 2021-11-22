@@ -50,18 +50,14 @@ const InputStep = ({ setStepsChange }) => {
 	return (
 		<Fragment>
 			<div className="container mt-5">
-				<h2 className="text-center my-5">
-					Tilføj dato og indtast antal skridt
-				</h2>
-
 				{/* Step count component */}
 
 				<form onSubmit={onSubmitForm}>
 					<div className="row mb-3">
-						<label htmlFor="inputDato" className="col-sm-2 col-form-label">
+						<label htmlFor="inputDato" className="col-sm-3 col-form-label">
 							Vælg dato
 						</label>
-						<div className="col-sm-10">
+						<div className="col-sm-8 d-flex justify-content-center align-items-center">
 							<DatePicker
 								locale="da"
 								dateFormat="d. MMMM yyyy"
@@ -73,10 +69,10 @@ const InputStep = ({ setStepsChange }) => {
 						</div>
 					</div>
 					<div className="row mb-3">
-						<label htmlFor="inputSteps" className="col-sm-2 col-form-label">
+						<label htmlFor="inputSteps" className="col-sm-3 col-form-label">
 							Indtast antal skridt
 						</label>
-						<div className="col-sm-10">
+						<div className="col-sm-8 d-flex justify-content-center align-items-center">
 							<input
 								type="text"
 								className="form-control mb-1"
@@ -87,7 +83,7 @@ const InputStep = ({ setStepsChange }) => {
 						</div>
 					</div>
 					<div className="text-center">
-						<button className="btn btn-success">Tilføj</button>
+						<button className="btn btn-primary">Tilføj</button>
 					</div>
 				</form>
 			</div>

@@ -56,7 +56,7 @@ const UserStatistics = ({ allSteps }) => {
 	);
 
 	return (
-		<h2 className="text-center my-5">
+		<div className="my-5 h7">
 			<p>
 				Total antal skridt:{' '}
 				<span>
@@ -75,7 +75,7 @@ const UserStatistics = ({ allSteps }) => {
 					<strong>{last7DaysUserSteps.toLocaleString('dk')}</strong>
 				</span>
 			</p>
-		</h2>
+		</div>
 	);
 };
 
