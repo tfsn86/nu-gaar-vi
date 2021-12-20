@@ -47,7 +47,7 @@ const Dashboard = ({ setAuth }) => {
 	return (
 		<div>
 			<div className="container">
-				<div className="row">
+				<div className="row border-bottom">
 					<div className="col-sm">
 						<InputStep setStepsChange={setStepsChange} />
 					</div>
@@ -56,7 +56,7 @@ const Dashboard = ({ setAuth }) => {
 					</div>
 				</div>
 
-				<ListSteps allSteps={allSteps} setStepsChange={setStepsChange} />
+				<ListSteps setStepsChange={setStepsChange} />
 			</div>
 		</div>
 	);

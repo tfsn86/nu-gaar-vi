@@ -13,4 +13,8 @@ $theme-colors: (
 	'dark': $dark,
 );
 
+.border-bottom {
+	border-bottom: dotted 1px black !important;
+}
+
 @import '../node_modules/bootstrap/scss/bootstrap';

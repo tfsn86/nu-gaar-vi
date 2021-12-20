@@ -82,7 +82,7 @@ const InputStep = ({ setStepsChange }) => {
 							/>
 						</div>
 					</div>
-					<div className="text-center">
+					<div className="text-center mb-5">
 						<button className="btn btn-primary">Tilføj</button>
 					</div>
 				</form>

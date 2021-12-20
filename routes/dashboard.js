@@ -18,7 +18,7 @@ router.get('/steps', authorize, async (req, res) => {
 });
 
 // Get 7 step count inputs (weekly)
-router.get('/weeklysteps', authorize, async (req, res) => {
+router.post('/weeklysteps', authorize, async (req, res) => {
 	try {
 		const { weeklyInput } = req.body;
 
