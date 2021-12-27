@@ -17,14 +17,14 @@ router.get('/steps', authorize, async (req, res) => {
 	}
 });
 
-// Get 7 step count inputs (weekly)
-router.post('/weeklysteps', authorize, async (req, res) => {
+// Get step count for specifik year and month
+router.post('/yearmonthsteps', authorize, async (req, res) => {
 	try {
-		const { weeklyInput } = req.body;
+		const { monthInput, yearInput } = req.body;
 
 		const weeklyUserStepCounts = await pool.query(
-			"SELECT u.user_name, s.step_id, s.steps, s.date_count FROM users AS u LEFT JOIN stepstable AS s ON u.user_id = s.user_id WHERE u.user_id = $1 AND date_part('week', s.date_count::date) = $2 ORDER BY s.date_count DESC",
-			[req.user.id, weeklyInput]
+			"SELECT u.user_name, s.step_id, s.steps, s.date_count FROM users AS u LEFT JOIN stepstable AS s ON u.user_id = s.user_id WHERE u.user_id = $1 AND date_part('month', s.date_count::date) = $2 AND date_part('year', s.date_count::date) = $3 ORDER BY s.date_count DESC",
+			[req.user.id, monthInput, yearInput]
 		);
 		res.json(weeklyUserStepCounts.rows);
 	} catch (error) {

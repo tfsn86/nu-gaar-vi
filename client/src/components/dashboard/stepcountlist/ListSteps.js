@@ -1,29 +1,44 @@
 import React, { Fragment, useEffect, useState } from 'react';
-import getCurrentWeeknumber from '../../utils/getCurrentWeeknumber';
 
 import EditSteps from './EditStep';
 
 const ListSteps = ({ setStepsChange }) => {
-	const [steps, setSteps] = useState([]);
-	const [weeklyInput, setWeeklyInput] = useState(getCurrentWeeknumber()); // the users current week should be default
+	const currentDate = new Date();
+	const currentMonth = currentDate.getMonth() + 1;
+	const currentYear = currentDate.getFullYear();
 
-	const weekNumberArray = [
-		1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21,
-		22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40,
-		41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52,
+	const [steps, setSteps] = useState([]);
+	const [monthInput, setMonthInput] = useState(currentMonth);
+	const [yearInput, setYearInput] = useState(currentYear);
+
+	const monthArray = [
+		{ monthNumber: 1, monthName: 'Januar' },
+		{ monthNumber: 2, monthName: 'Februar' },
+		{ monthNumber: 3, monthName: 'Marts' },
+		{ monthNumber: 4, monthName: 'April' },
+		{ monthNumber: 5, monthName: 'Maj' },
+		{ monthNumber: 6, monthName: 'Juni' },
+		{ monthNumber: 7, monthName: 'Juli' },
+		{ monthNumber: 8, monthName: 'August' },
+		{ monthNumber: 9, monthName: 'September' },
+		{ monthNumber: 10, monthName: 'Oktober' },
+		{ monthNumber: 11, monthName: 'November' },
+		{ monthNumber: 12, monthName: 'December' },
 	];
 
+	const yearArray = [2021, 2022];
+
 	// Get weekly user step count
-	const getWeeklyUserStepCount = async () => {
+	const getMonthUserStepCountInput = async () => {
 		try {
 			const myHeaders = new Headers();
 
 			myHeaders.append('Content-Type', 'application/json');
 			myHeaders.append('jwt_token', localStorage.token);
 
-			const body = { weeklyInput };
+			const body = { monthInput, yearInput };
 
-			const response = await fetch('/dashboard/weeklysteps', {
+			const response = await fetch('/dashboard/yearmonthsteps', {
 				method: 'POST',
 				headers: myHeaders,
 				body: JSON.stringify(body),
@@ -70,40 +85,68 @@ const ListSteps = ({ setStepsChange }) => {
 	};
 
 	useEffect(() => {
-		getWeeklyUserStepCount();
-	}, [weeklyInput]); // eslint-disable-line react-hooks/exhaustive-deps
+		getMonthUserStepCountInput();
+	}, [monthInput, yearInput]); // eslint-disable-line react-hooks/exhaustive-deps
 
 	return (
 		<Fragment>
-			<div className="container">
-				<form className="mt-5">
-					<div className="d-flex mb-3 justify-content-center align-items-center">
-						<label className="mr-2 col-form-label" htmlFor="selectWeek">
-							<strong>Vis uge</strong>
-						</label>
-						<div>
-							<select
-								className="justify-content-center align-items-center"
-								id="selectWeek"
-								value={weeklyInput}
-								onChange={(e) => setWeeklyInput(e.target.value)}
-							>
-								{weekNumberArray.map((weeknum) => {
-									return (
-										<option
-											className="text-center"
-											value={weeknum}
-											key={weeknum}
-										>
-											{weeknum}
-										</option>
-									);
-								})}
-							</select>
-						</div>
+			<div className="container mt-3">
+				<div className="row d-flex justify-content-center">
+					<div className="col-2 text-center">
+						<form>
+							<label className="mr-2 col-form-label" htmlFor="selectYear">
+								<strong>Vælg år</strong>
+							</label>
+
+							<div className="col">
+								<select
+									className="justify-content-center align-items-center"
+									id="selectyear"
+									value={yearInput}
+									onChange={(e) => setYearInput(e.target.value)}
+								>
+									{yearArray.map((year) => {
+										return (
+											<option className="text-center" value={year} key={year}>
+												{year}
+											</option>
+										);
+									})}
+								</select>
+							</div>
+						</form>
 					</div>
-				</form>
+
+					<div className="col-2 text-center">
+						<form>
+							<label className="mr-2 col-form-label" htmlFor="selectMonth">
+								<strong>Vælg måned</strong>
+							</label>
+							<div>
+								<select
+									className="justify-content-center align-items-center"
+									id="selectMonth"
+									value={monthInput}
+									onChange={(e) => setMonthInput(e.target.value)}
+								>
+									{monthArray.map((month) => {
+										return (
+											<option
+												className="text-center"
+												value={month.monthNumber}
+												key={month.monthNumber}
+											>
+												{month.monthName}
+											</option>
+										);
+									})}
+								</select>
+							</div>
+						</form>
+					</div>
+				</div>
 			</div>
+
 			<table className="table mt-5 text-center">
 				<thead>
 					<tr>
