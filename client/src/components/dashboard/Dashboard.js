@@ -56,7 +56,7 @@ const Dashboard = ({ setAuth }) => {
 					</div>
 				</div>
 
-				<ListSteps setStepsChange={setStepsChange} />
+				<ListSteps stepsChange={stepsChange} setStepsChange={setStepsChange} />
 			</div>
 		</div>
 	);

@@ -2,7 +2,7 @@ import React, { Fragment, useEffect, useState } from 'react';
 
 import EditSteps from './EditStep';
 
-const ListSteps = ({ setStepsChange }) => {
+const ListSteps = ({ stepsChange, setStepsChange }) => {
 	const currentDate = new Date();
 	const currentMonth = currentDate.getMonth() + 1;
 	const currentYear = currentDate.getFullYear();
@@ -86,7 +86,7 @@ const ListSteps = ({ setStepsChange }) => {
 
 	useEffect(() => {
 		getMonthUserStepCountInput();
-	}, [monthInput, yearInput]); // eslint-disable-line react-hooks/exhaustive-deps
+	}, [monthInput, yearInput, stepsChange]); // eslint-disable-line react-hooks/exhaustive-deps
 
 	return (
 		<Fragment>
