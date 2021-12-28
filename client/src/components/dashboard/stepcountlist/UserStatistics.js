@@ -56,27 +56,25 @@ const UserStatistics = ({ allSteps }) => {
 	);
 
 	return (
-		<div className="container">
-			<div className="my-5 h7">
-				<p>
-					Total antal skridt:{' '}
-					<span>
-						<strong>{totalUserSteps.toLocaleString('dk')}</strong>
-					</span>
-				</p>
-				<p>
-					Antal skridt seneste 30 dage:{' '}
-					<span>
-						<strong>{last30DaysUserSteps.toLocaleString('dk')}</strong>
-					</span>
-				</p>
-				<p>
-					Antal skridt seneste uge:{' '}
-					<span>
-						<strong>{last7DaysUserSteps.toLocaleString('dk')}</strong>
-					</span>
-				</p>
-			</div>
+		<div className="my-5 h7">
+			<p>
+				Total antal skridt:{' '}
+				<span>
+					<strong>{totalUserSteps.toLocaleString('dk')}</strong>
+				</span>
+			</p>
+			<p>
+				Antal skridt seneste 30 dage:{' '}
+				<span>
+					<strong>{last30DaysUserSteps.toLocaleString('dk')}</strong>
+				</span>
+			</p>
+			<p>
+				Antal skridt seneste uge:{' '}
+				<span>
+					<strong>{last7DaysUserSteps.toLocaleString('dk')}</strong>
+				</span>
+			</p>
 		</div>
 	);
 };

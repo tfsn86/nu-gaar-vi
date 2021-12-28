@@ -44,39 +44,37 @@ const UserSignIn = ({ setAuth }) => {
 		<Fragment>
 			<div className="container">
 				<form className="mt-5" onSubmit={onSubmitForm}>
-					<div className="container">
-						<div className="form-group">
-							<label htmlFor="email" className="font-weight-bolder">
-								Email
-							</label>
-							<input
-								type="text"
-								name="email"
-								value={email}
-								onChange={(e) => onChange(e)}
-								className="form-control"
-							/>
-						</div>
-						<div className="form-group">
-							<label htmlFor="password" className="font-weight-bolder">
-								Kodeord
-							</label>
-							<input
-								type="password"
-								name="password"
-								value={password}
-								onChange={(e) => onChange(e)}
-								className="form-control"
-							/>
-						</div>
-						<div className="text-center mt-4">
-							<button type="submit" className="btn btn-primary">
-								Log ind
-							</button>
-						</div>
-						<div className="text-center mt-5">
-							<Link to="/forgot-password">Glemt adgangskode?</Link>
-						</div>
+					<div className="form-group">
+						<label htmlFor="email" className="font-weight-bolder">
+							Email
+						</label>
+						<input
+							type="text"
+							name="email"
+							value={email}
+							onChange={(e) => onChange(e)}
+							className="form-control"
+						/>
+					</div>
+					<div className="form-group">
+						<label htmlFor="password" className="font-weight-bolder">
+							Kodeord
+						</label>
+						<input
+							type="password"
+							name="password"
+							value={password}
+							onChange={(e) => onChange(e)}
+							className="form-control"
+						/>
+					</div>
+					<div className="text-center mt-4">
+						<button type="submit" className="btn btn-primary">
+							Log ind
+						</button>
+					</div>
+					<div className="text-center mt-5">
+						<Link to="/forgot-password">Glemt adgangskode?</Link>
 					</div>
 				</form>
 			</div>
