@@ -56,37 +56,41 @@ const ResetPassword = ({ setAuth }) => {
 	return (
 		<Fragment>
 			<div className="container">
-				<form className="mt-5" onSubmit={onSubmitForm}>
-					<div className="form-group">
-						<label htmlFor="password" className="font-weight-bolder">
-							Kodeord
-						</label>
-						<input
-							type="password"
-							name="newPassword"
-							value={newPassword}
-							onChange={(e) => onChange(e)}
-							className="form-control"
-						/>
-					</div>
-					<div className="form-group">
-						<label htmlFor="password" className="font-weight-bolder">
-							Bekræft kodeord
-						</label>
-						<input
-							type="password"
-							name="confirmPassword"
-							value={confirmPassword}
-							onChange={(e) => onChange(e)}
-							className="form-control"
-						/>
-					</div>
-					<div className="text-center mt-4">
-						<button type="submit" className="btn btn-primary">
-							Bekræft
-						</button>
-					</div>
-				</form>
+				<div className="col-sm"></div>
+				<div className="col-sm">
+					<form className="mt-5" onSubmit={onSubmitForm}>
+						<div className="form-group">
+							<label htmlFor="password" className="font-weight-bolder">
+								Kodeord
+							</label>
+							<input
+								type="password"
+								name="newPassword"
+								value={newPassword}
+								onChange={(e) => onChange(e)}
+								className="form-control"
+							/>
+						</div>
+						<div className="form-group">
+							<label htmlFor="password" className="font-weight-bolder">
+								Bekræft kodeord
+							</label>
+							<input
+								type="password"
+								name="confirmPassword"
+								value={confirmPassword}
+								onChange={(e) => onChange(e)}
+								className="form-control"
+							/>
+						</div>
+						<div className="text-center mt-4">
+							<button type="submit" className="btn btn-primary">
+								Bekræft
+							</button>
+						</div>
+					</form>
+				</div>
+				<div className="col-sm"></div>
 			</div>
 		</Fragment>
 	);
